@@ -7,10 +7,6 @@ if(NOT MSVC)
   add_test(parse_test parse_test)
 endif()
 
-add_executable(crypto_test crypto_test.cpp)
-target_link_libraries(crypto_test simple-websocket-server)
-add_test(crypto_test crypto_test)
-
 add_executable(io_test io_test.cpp)
 target_link_libraries(io_test simple-websocket-server)
 add_test(io_test io_test)
@@ -19,7 +15,9 @@ add_test(io_test io_test)
 set(TEST_SOURCES
   main.cpp
   catch_sample.cpp
+  crypto_test.cpp
 )
 
 add_executable(kadotest ${TEST_SOURCES})
+target_link_libraries(kadotest simple-websocket-server)
 add_test(kadotest kadotest)

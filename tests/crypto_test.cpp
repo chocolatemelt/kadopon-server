@@ -1,7 +1,7 @@
-#include <cassert>
 #include <vector>
 
-#include "../src/crypto.hpp"
+#include "catch.hpp"
+#include "crypto.hpp"
 
 using namespace std;
 using namespace SimpleWeb;
@@ -33,42 +33,55 @@ const vector<pair<string, string>> sha512_string_tests = {
     {"", "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e"},
     {"The quick brown fox jumps over the lazy dog", "07e547d9586f6a73f73fbac0435ed76951218fb7d0c8d788a309d785436bbb642e93a252a954f23912547d1e8a3b5ed6e1bfd7097821233fa0538f3db854fee6"}};
 
-int main() {
+TEST_CASE("base64 encodes and decodes properly", "[wss][crypto]") {
   for(auto &string_test : base64_string_tests) {
-    assert(Crypto::Base64::encode(string_test.first) == string_test.second);
-    assert(Crypto::Base64::decode(string_test.second) == string_test.first);
+    CHECK(Crypto::Base64::encode(string_test.first) == string_test.second);
+    CHECK(Crypto::Base64::decode(string_test.second) == string_test.first);
   }
+}
 
+TEST_CASE("md5 encodes and decodes properly", "[wss][crypto]") {
   for(auto &string_test : md5_string_tests) {
-    assert(Crypto::to_hex_string(Crypto::md5(string_test.first)) == string_test.second);
+    CHECK(Crypto::to_hex_string(Crypto::md5(string_test.first)) == string_test.second);
     stringstream ss(string_test.first);
-    assert(Crypto::to_hex_string(Crypto::md5(ss)) == string_test.second);
+    CHECK(Crypto::to_hex_string(Crypto::md5(ss)) == string_test.second);
   }
+}
 
+TEST_CASE("sha1 encodes and decodes properly", "[wss][crypto]") {
   for(auto &string_test : sha1_string_tests) {
-    assert(Crypto::to_hex_string(Crypto::sha1(string_test.first)) == string_test.second);
+    CHECK(Crypto::to_hex_string(Crypto::sha1(string_test.first)) == string_test.second);
     stringstream ss(string_test.first);
-    assert(Crypto::to_hex_string(Crypto::sha1(ss)) == string_test.second);
+    CHECK(Crypto::to_hex_string(Crypto::sha1(ss)) == string_test.second);
   }
+}
 
+TEST_CASE("sha256 encodes and decodes properly", "[wss][crypto]") {
   for(auto &string_test : sha256_string_tests) {
-    assert(Crypto::to_hex_string(Crypto::sha256(string_test.first)) == string_test.second);
+    CHECK(Crypto::to_hex_string(Crypto::sha256(string_test.first)) == string_test.second);
     stringstream ss(string_test.first);
-    assert(Crypto::to_hex_string(Crypto::sha256(ss)) == string_test.second);
+    CHECK(Crypto::to_hex_string(Crypto::sha256(ss)) == string_test.second);
   }
+}
 
+TEST_CASE("sha512 encodes and decodes properly", "[wss][crypto]") {
   for(auto &string_test : sha512_string_tests) {
-    assert(Crypto::to_hex_string(Crypto::sha512(string_test.first)) == string_test.second);
+    CHECK(Crypto::to_hex_string(Crypto::sha512(string_test.first)) == string_test.second);
     stringstream ss(string_test.first);
-    assert(Crypto::to_hex_string(Crypto::sha512(ss)) == string_test.second);
+    CHECK(Crypto::to_hex_string(Crypto::sha512(ss)) == string_test.second);
+  }
+}
+
+TEST_CASE("iterations", "[wss][crypto]") {
+  SECTION("sha1 iterations") {
+    CHECK(Crypto::to_hex_string(Crypto::sha1("Test", 1)) == "640ab2bae07bedc4c163f679a746f7ab7fb5d1fa");
+    CHECK(Crypto::to_hex_string(Crypto::sha1("Test", 2)) == "af31c6cbdecd88726d0a9b3798c71ef41f1624d5");
+    stringstream ss("Test");
+    CHECK(Crypto::to_hex_string(Crypto::sha1(ss, 2)) == "af31c6cbdecd88726d0a9b3798c71ef41f1624d5");
   }
 
-  //Testing iterations
-  assert(Crypto::to_hex_string(Crypto::sha1("Test", 1)) == "640ab2bae07bedc4c163f679a746f7ab7fb5d1fa");
-  assert(Crypto::to_hex_string(Crypto::sha1("Test", 2)) == "af31c6cbdecd88726d0a9b3798c71ef41f1624d5");
-  stringstream ss("Test");
-  assert(Crypto::to_hex_string(Crypto::sha1(ss, 2)) == "af31c6cbdecd88726d0a9b3798c71ef41f1624d5");
-
-  assert(Crypto::to_hex_string(Crypto::pbkdf2("Password", "Salt", 4096, 128 / 8)) == "f66df50f8aaa11e4d9721e1312ff2e66");
-  assert(Crypto::to_hex_string(Crypto::pbkdf2("Password", "Salt", 8192, 512 / 8)) == "a941ccbc34d1ee8ebbd1d34824a419c3dc4eac9cbc7c36ae6c7ca8725e2b618a6ad22241e787af937b0960cf85aa8ea3a258f243e05d3cc9b08af5dd93be046c");
+  SECTION("salt derivations") {
+    CHECK(Crypto::to_hex_string(Crypto::pbkdf2("Password", "Salt", 4096, 128 / 8)) == "f66df50f8aaa11e4d9721e1312ff2e66");
+    CHECK(Crypto::to_hex_string(Crypto::pbkdf2("Password", "Salt", 8192, 512 / 8)) == "a941ccbc34d1ee8ebbd1d34824a419c3dc4eac9cbc7c36ae6c7ca8725e2b618a6ad22241e787af937b0960cf85aa8ea3a258f243e05d3cc9b08af5dd93be046c");
+  }
 }
