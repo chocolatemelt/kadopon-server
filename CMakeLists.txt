@@ -9,6 +9,9 @@ include_directories(
 	${PROJECT_SOURCE_DIR}/src
 )
 
+# build executables in bin/
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+
 # g++ compiletime flags for C++14
 if(NOT MSVC)
     add_compile_options(-std=c++14 -Wall -Wextra -Wsign-conversion)
