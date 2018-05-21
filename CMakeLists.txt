@@ -4,12 +4,12 @@ project (Simple-WebSocket-Server)
 # ycm support
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
+# header include directories
 include_directories(
 	${PROJECT_SOURCE_DIR}/src
 )
 
-option(BUILD_TESTING "set ON to build library tests" ON)
-
+# g++ compiletime flags for C++14
 if(NOT MSVC)
     add_compile_options(-std=c++14 -Wall -Wextra -Wsign-conversion)
 else()
@@ -17,9 +17,7 @@ else()
 endif()
 
 add_library(simple-websocket-server INTERFACE)
-
 target_include_directories(simple-websocket-server INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
-
 find_package(Threads REQUIRED)
 target_link_libraries(simple-websocket-server INTERFACE ${CMAKE_THREAD_LIBS_INIT})
 
@@ -47,6 +45,7 @@ if(WIN32)
     target_link_libraries(simple-websocket-server INTERFACE ws2_32 wsock32)
 endif()
 
+# OSX has its own openssl implementation
 if(APPLE)
     set(OPENSSL_ROOT_DIR "/usr/local/opt/openssl")
 endif()
@@ -68,12 +67,9 @@ if("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}")
     target_include_directories(wss_examples PRIVATE ${Boost_INCLUDE_DIR})
   endif()
 
-  set(BUILD_TESTING ON)
-
   install(FILES server_ws.hpp client_ws.hpp server_wss.hpp client_wss.hpp crypto.hpp utility.hpp status_code.hpp DESTINATION include/simple-websocket-server)
 endif()
 
-if(BUILD_TESTING)
-  enable_testing()
-  add_subdirectory(tests)
-endif()
+# testing subfolder
+enable_testing()
+add_subdirectory(tests)
