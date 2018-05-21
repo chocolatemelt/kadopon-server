@@ -53,22 +53,14 @@ find_package(OpenSSL REQUIRED)
 target_link_libraries(simple-websocket-server INTERFACE ${OPENSSL_LIBRARIES})
 target_include_directories(simple-websocket-server INTERFACE ${OPENSSL_INCLUDE_DIR})
 
-# If Simple-WebSocket-Server is not a sub-project:
-if("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}")
-  add_executable(ws_examples src/ws_examples.cpp)
-  target_link_libraries(ws_examples simple-websocket-server)
-  find_package(Boost 1.54.0 COMPONENTS system thread filesystem REQUIRED)
-  target_link_libraries(ws_examples ${Boost_LIBRARIES})
-  target_include_directories(ws_examples PRIVATE ${Boost_INCLUDE_DIR})
-  if(OPENSSL_FOUND)
-    add_executable(wss_examples src/wss_examples.cpp)
-    target_link_libraries(wss_examples simple-websocket-server)
-    target_link_libraries(wss_examples ${Boost_LIBRARIES})
-    target_include_directories(wss_examples PRIVATE ${Boost_INCLUDE_DIR})
-  endif()
+# server entrypoint
+add_executable(kadopon src/main.cpp)
+target_link_libraries(kadopon simple-websocket-server)
+find_package(Boost 1.54.0 COMPONENTS system thread filesystem REQUIRED)
+target_link_libraries(kadopon ${Boost_LIBRARIES})
+target_include_directories(kadopon PRIVATE ${Boost_INCLUDE_DIR})
 
-  install(FILES server_ws.hpp client_ws.hpp server_wss.hpp client_wss.hpp crypto.hpp utility.hpp status_code.hpp DESTINATION include/simple-websocket-server)
-endif()
+install(FILES server_ws.hpp client_ws.hpp server_wss.hpp client_wss.hpp crypto.hpp utility.hpp status_code.hpp DESTINATION include/simple-websocket-server)
 
 # testing subfolder
 enable_testing()
