@@ -1,9 +1,9 @@
 if(NOT MSVC)
-    add_compile_options(-fno-access-control)
+  add_compile_options(-fno-access-control)
 
-    add_executable(parse_test parse_test.cpp)
-    target_link_libraries(parse_test simple-websocket-server)
-    add_test(parse_test parse_test)
+  add_executable(parse_test parse_test.cpp)
+  target_link_libraries(parse_test simple-websocket-server)
+  add_test(parse_test parse_test)
 endif()
 
 add_executable(crypto_test crypto_test.cpp)
@@ -13,3 +13,11 @@ add_test(crypto_test crypto_test)
 add_executable(io_test io_test.cpp)
 target_link_libraries(io_test simple-websocket-server)
 add_test(io_test io_test)
+
+set(TEST_SOURCES
+  main.cpp
+  catch_sample.cpp
+)
+
+add_executable(kadotest ${TEST_SOURCES})
+add_test(kadotest kadotest)
