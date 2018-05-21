@@ -1,3 +1,4 @@
+# websockets Server tests
 if(NOT MSVC)
   add_compile_options(-fno-access-control)
 
@@ -14,6 +15,7 @@ add_executable(io_test io_test.cpp)
 target_link_libraries(io_test simple-websocket-server)
 add_test(io_test io_test)
 
+# kadopon tests
 set(TEST_SOURCES
   main.cpp
   catch_sample.cpp
