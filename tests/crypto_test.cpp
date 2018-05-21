@@ -1,7 +1,7 @@
 #include <cassert>
 #include <vector>
 
-#include "crypto.hpp"
+#include "../src/crypto.hpp"
 
 using namespace std;
 using namespace SimpleWeb;

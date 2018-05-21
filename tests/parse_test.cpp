@@ -1,5 +1,5 @@
-#include "client_ws.hpp"
-#include "server_ws.hpp"
+#include "../src/client_ws.hpp"
+#include "../src/server_ws.hpp"
 #include <cassert>
 #include <iostream>
 
