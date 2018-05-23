@@ -7,7 +7,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 # header include directories
 include_directories(
 	${PROJECT_SOURCE_DIR}/src
-  ${PROJECT_SOURCE_DIR}/ext
+	${PROJECT_SOURCE_DIR}/ext
+  ${PROJECT_SOURCE_DIR}/ext/entityx
 )
 
 add_subdirectory(ext/entityx)
@@ -26,6 +27,7 @@ endif()
 # server entrypoint
 add_executable(kadopon src/main.cpp)
 target_link_libraries(kadopon simple-websocket-server)
+target_link_libraries(kadopon entityx_shared)
 find_package(Boost 1.54.0 COMPONENTS system thread filesystem REQUIRED)
 target_link_libraries(kadopon ${Boost_LIBRARIES})
 target_include_directories(kadopon PRIVATE ${Boost_INCLUDE_DIR})

@@ -16,8 +16,10 @@ set(TEST_SOURCES
   main.cpp
   catch_sample.cpp
   crypto_test.cpp
+  ex.cpp
 )
 
 add_executable(kadotest ${TEST_SOURCES})
 target_link_libraries(kadotest simple-websocket-server)
+target_link_libraries(kadotest entityx_shared)
 add_test(kadotest kadotest)
