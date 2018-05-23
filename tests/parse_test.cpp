@@ -1,7 +1,8 @@
-#include "client_ws.hpp"
-#include "server_ws.hpp"
 #include <cassert>
 #include <iostream>
+
+#include "client_ws.hpp"
+#include "server_ws.hpp"
 
 using namespace std;
 using namespace SimpleWeb;
