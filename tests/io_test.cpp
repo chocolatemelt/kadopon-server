@@ -1,7 +1,7 @@
+#include <cassert>
+
 #include "client_ws.hpp"
 #include "server_ws.hpp"
-
-#include <cassert>
 
 using namespace std;
 
