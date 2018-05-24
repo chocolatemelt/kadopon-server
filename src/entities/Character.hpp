@@ -7,16 +7,11 @@
 
 class Character {
 public:
-	Character(std::string n) : name(n) {}
-
-	void initialize(entityx::ptr<entityx::EntityManager> entities,
-									entityx::ptr<entityx::EventManager> events);
+	Character(std::string n, entityx::Entity e) : name(n), entity(e) {}
 
 private:
 	std::string name;
-
 	entityx::Entity entity;
-	entityx::ptr<entityx::EntityManager> entity_manager;
 };
 
 #endif
