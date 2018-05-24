@@ -19,6 +19,7 @@ set(TEST_SOURCES
   ex.cpp
   fmt.cpp
   rng/rng.cpp
+  modifiers/increased_vs_more.cpp
 )
 
 add_executable(kadotest ${TEST_SOURCES} ${KADOPON_SOURCES})
