@@ -10,9 +10,9 @@
 
 class Rng {
 public:
-	static int get();
+  static int get();
 private:
-	Rng() {}
+  Rng() {}
 };
 
 #endif
