@@ -36,6 +36,8 @@ if(NOT MSVC)
       -Wextra
       -Wno-sign-compare
       -Wno-unused-parameter
+			# -fsanitize=address,undefined
+			-g
     )
 else()
     add_compile_options(/W1)
