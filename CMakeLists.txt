@@ -7,10 +7,18 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 # header include directories
 include_directories(
 	${PROJECT_SOURCE_DIR}/src
+	${PROJECT_SOURCE_DIR}/src/rng
+
 	${PROJECT_SOURCE_DIR}/ext
   ${PROJECT_SOURCE_DIR}/ext/entityx
 )
 
+# sources
+set(KADOPON_SOURCES
+  ${PROJECT_SOURCE_DIR}/src/rng/xorshift.cpp
+)
+
+# external libraries
 add_subdirectory(ext/entityx)
 add_subdirectory(ext/ws)
 add_subdirectory(ext/fmt)
@@ -26,7 +34,7 @@ else()
 endif()
 
 # server entrypoint
-add_executable(kadopon src/main.cpp)
+add_executable(kadopon src/main.cpp ${KADOPON_SOURCES})
 target_link_libraries(kadopon simple-websocket-server)
 target_link_libraries(kadopon entityx_shared)
 target_link_libraries(kadopon fmt-header-only)
