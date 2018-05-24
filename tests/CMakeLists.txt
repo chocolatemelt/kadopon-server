@@ -18,9 +18,10 @@ set(TEST_SOURCES
   crypto_test.cpp
   ex.cpp
   fmt.cpp
+  rng/rng.cpp
 )
 
-add_executable(kadotest ${TEST_SOURCES})
+add_executable(kadotest ${TEST_SOURCES} ${KADOPON_SOURCES})
 target_link_libraries(kadotest simple-websocket-server)
 target_link_libraries(kadotest entityx_shared)
 target_link_libraries(kadotest fmt-header-only)
