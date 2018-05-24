@@ -7,7 +7,10 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 # header include directories
 include_directories(
 	${PROJECT_SOURCE_DIR}/src
+	${PROJECT_SOURCE_DIR}/src/components
+	${PROJECT_SOURCE_DIR}/src/entities
 	${PROJECT_SOURCE_DIR}/src/rng
+	${PROJECT_SOURCE_DIR}/src/systems
 
 	${PROJECT_SOURCE_DIR}/ext
   ${PROJECT_SOURCE_DIR}/ext/entityx
@@ -15,7 +18,9 @@ include_directories(
 
 # sources
 set(KADOPON_SOURCES
+  ${PROJECT_SOURCE_DIR}/src/entities/Character.cpp
   ${PROJECT_SOURCE_DIR}/src/rng/xorshift.cpp
+  ${PROJECT_SOURCE_DIR}/src/systems/ScalingModifiers.cpp
 )
 
 # external libraries
@@ -28,7 +33,13 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 
 # g++ compiletime flags for C++14
 if(NOT MSVC)
-    add_compile_options(-std=c++14 -Wall -Wextra -Wsign-conversion)
+    add_compile_options(
+      -std=c++14
+      -Wall
+      -Wextra
+      -Wno-sign-compare
+      -Wno-unused-parameter
+    )
 else()
     add_compile_options(/W1)
 endif()
