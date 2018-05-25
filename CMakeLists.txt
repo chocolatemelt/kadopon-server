@@ -49,8 +49,9 @@ if(NOT MSVC)
       -Wextra
       -Wno-sign-compare
       -Wno-unused-parameter
+      -ggdb
     )
-    
+
     # google sanitize flags for debugging
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address,undefined")
 else()
