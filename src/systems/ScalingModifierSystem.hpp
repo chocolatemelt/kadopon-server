@@ -8,8 +8,7 @@
 
 class ScalingModifierSystem : public entityx::System<ScalingModifierSystem> {
 public:
-	ScalingModifierSystem();
-	virtual ~ScalingModifierSystem();
+	ScalingModifierSystem() {}
 
 	void update(entityx::EntityManager &em, entityx::EventManager &es, double dt);
 };
