@@ -12,8 +12,7 @@
  * www.open-std.org/jtc1/sc22/wg21/docs/papers/2003/n1452.html
  * for the structure.
  */
-#ifndef XORSHIFT_HPP
-#define XORSHIFT_HPP
+#pragma once
 
 #include <cstdint>
 
@@ -62,5 +61,3 @@ private:
 // numbers forever.
 bool operator==(const xorshift &lhs, const xorshift &rhs);
 bool operator!=(const xorshift &lhs, const xorshift &rhs);
-
-#endif

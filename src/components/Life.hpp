@@ -3,8 +3,7 @@
  * Basic Life component. This should be displayed as an integer, but the internal representation
  * is a double.
  */
-#ifndef COMPONENT_LIFE_HPP
-#define COMPONENT_LIFE_HPP
+#pragma once
 
 #include "entityx/entityx.h"
 
@@ -13,5 +12,3 @@ struct Life : entityx::Component<Life> {
 
   double life;
 };
-
-#endif
