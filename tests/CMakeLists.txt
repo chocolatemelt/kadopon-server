@@ -17,6 +17,7 @@ set(TEST_SOURCES
   catch_sample.cpp
   crypto_test.cpp
   ex.cpp
+  ex_system.cpp
   fmt.cpp
   rng/rng.cpp
   modifiers/increased_vs_more.cpp
