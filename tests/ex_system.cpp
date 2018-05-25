@@ -7,12 +7,9 @@
  *
  * Author: Alec Thomas <alec@swapoff.org>
  */
-
-#define CATCH_CONFIG_MAIN
-
 #include <string>
 #include <vector>
-#include "entityx/3rdparty/catch.hpp"
+#include "catch.hpp"
 #include "entityx/System.h"
 #include "entityx/quick.h"
 
