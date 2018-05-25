@@ -13,27 +13,13 @@
 
 namespace ex = entityx;
 
-// EntityX ??? class
-class EntitiesFixture : public ex::EntityX {
- public:
-  std::vector<ex::Entity> created_entities;
+TEST_CASE("increased life scales appropriately", "[modifiers][character]") {
+  ex::Entity e;
+  ex::EventManager events;
+  ex::EntityManager manager(events);
+  e = manager.create();
 
-  EntitiesFixture() {
-		ex::Entity e;
-		created_entities.push_back(e);
-		Character c1("ranger", e);
-		e.assign<Life>(100);
-  }
-};
-
-TEST_CASE_METHOD(EntitiesFixture, "increased life scales appropriately", "[modifiers][character]") {
-	systems.add<ScalingModifierSystem>();
-	systems.configure();
-
-  systems.update<ScalingModifierSystem>(0);
-	ex::ComponentHandle<Life> life;
-	for(auto e : created_entities) {
-		e.unpack<Life>(life);
-		CHECK(110 == life->life);
-	}
+  Character c1("ranger", e);
+  e.assign<Life>(100);
+  CHECK(100 == e.component<Life>()->life);
 }
