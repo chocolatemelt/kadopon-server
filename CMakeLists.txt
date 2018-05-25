@@ -1,5 +1,18 @@
-cmake_minimum_required (VERSION 3.0)
-project (kadopon-server)
+cmake_minimum_required(VERSION 3.0)
+project(kadopon-server)
+
+if(NOT CMAKE_BUILD_TYPE)
+  message(STATUS "No build type specified; falling back to `Debug`")
+  set(CMAKE_BUILD_TYPE Debug)
+endif()
+
+set(DEBUG FALSE)
+set(RELEASE FALSE)
+if(CMAKE_BUILD_TYPE MATCHES Debug)
+	set(DEBUG TRUE)
+elseif(CMAKE_BUILD_TYPE MATCHES Release)
+	set(RELEASE TRUE)
+endif()
 
 # ycm support
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
@@ -17,7 +30,7 @@ include_directories(
 set(KADOPON_SOURCES
   ${PROJECT_SOURCE_DIR}/src/entities/Character.cpp
   ${PROJECT_SOURCE_DIR}/src/rng/xorshift.cpp
-  ${PROJECT_SOURCE_DIR}/src/systems/ScalingModifiers.cpp
+  ${PROJECT_SOURCE_DIR}/src/systems/ScalingModifierSystem.cpp
 )
 
 # external libraries
@@ -36,9 +49,10 @@ if(NOT MSVC)
       -Wextra
       -Wno-sign-compare
       -Wno-unused-parameter
-			# -fsanitize=address,undefined
-			-g
     )
+    
+    # google sanitize flags for debugging
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address,undefined")
 else()
     add_compile_options(/W1)
 endif()
