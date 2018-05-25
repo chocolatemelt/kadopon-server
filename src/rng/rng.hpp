@@ -3,8 +3,7 @@
  * Simple random number generator using C++11 STL, with support for custom probability
  * distributions.
  */
-#ifndef RNG_HPP
-#define RNG_HPP
+#pragma once
 
 #include "xorshift.hpp"
 
@@ -14,5 +13,3 @@ public:
 private:
   Rng() {}
 };
-
-#endif

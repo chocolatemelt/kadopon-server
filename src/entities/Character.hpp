@@ -5,8 +5,7 @@
  * Simple entity container for a Character - does not make a particular distinction between Player
  * and NPC characters.
  */
-#ifndef ENTITY_CHARACTER_H
-#define ENTITY_CHARACTER_H
+#pragma once
 
 #include <string>
 
@@ -20,5 +19,3 @@ private:
 	std::string name;
 	entityx::Entity entity;
 };
-
-#endif
