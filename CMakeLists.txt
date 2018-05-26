@@ -47,11 +47,11 @@ set(COMMON_FLAGS
   -std=c++14
   -Wall
   -Wextra
-  -pedantic
-  -Wsign-conversion
+  -Wno-sign-compare
+  -Wno-unused-parameter
 )
 set(DEBUG_FLAGS
-  -DDEBUG
+  -ggdb
   -fsanitize=address,undefined
   --coverage
 )
