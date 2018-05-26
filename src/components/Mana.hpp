@@ -5,10 +5,9 @@
  */
 #pragma once
 
+#include "components/ScalingComponent.hpp"
 #include "entityx/entityx.h"
 
-struct Mana : entityx::Component<Mana> {
-  Mana(double l = 0.0) : current(l), base(l), total(l) {}
-
-  double current, base, total;
+struct Mana : ScalingComponent {
+  Mana(double m = 0.0) : ScalingComponent(m) {}
 };
