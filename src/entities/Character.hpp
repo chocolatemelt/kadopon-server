@@ -11,17 +11,18 @@
 #include "entityx/entityx.h"
 #include "modifiers/Modifier.hpp"
 
-class Character {
+class Character : public entityx::Entity {
 public:
-	Character(std::string n, entityx::Entity e) : name(n), entity(e) {}
+	Character(std::string n) : name(n) {}
 
 	template <class Mod>
 	void testAddModifier(Mod m) {
 		modifiers.push_back(m);
 	}
 
+	std::vector<Modifier> testGetModifier(std::string id);
+
 private:
 	std::string name;
-	entityx::Entity entity;
 	std::vector<Modifier> modifiers;
 };
