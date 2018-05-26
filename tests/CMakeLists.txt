@@ -1,11 +1,9 @@
 # websockets Server tests
-if(NOT MSVC)
-  add_compile_options(-fno-access-control)
+add_compile_options(-fno-access-control)
 
-  add_executable(parse_test parse_test.cpp)
-  target_link_libraries(parse_test simple-websocket-server)
-  add_test(parse_test parse_test)
-endif()
+add_executable(parse_test parse_test.cpp)
+target_link_libraries(parse_test simple-websocket-server)
+add_test(parse_test parse_test)
 
 add_executable(io_test io_test.cpp)
 target_link_libraries(io_test simple-websocket-server)
@@ -14,13 +12,19 @@ add_test(io_test io_test)
 # kadopon tests
 set(TEST_SOURCES
   main.cpp
-  catch_sample.cpp
   crypto_test.cpp
-  ex.cpp
-  ex_system.cpp
   fmt.cpp
-  rng/rng.cpp
+
+  entityx/Dependencies_test.cc
+  entityx/Entity_test.cc
+  entityx/Event_test.cc
+  entityx/Pool_test.cc
+  entityx/System_test.cc
+  entityx/TagsComponent_test.cc
+
   modifiers/increased_vs_more.cpp
+
+  rng/rng.cpp
 )
 
 add_executable(kadotest ${TEST_SOURCES} ${KADOPON_SOURCES})
