@@ -5,10 +5,11 @@
  */
 #pragma once
 
+#include "components/ScalingComponent.hpp"
 #include "entityx/entityx.h"
 
-struct Life : entityx::Component<Life> {
-  Life(double l = 0.0) : current(l), base(l), total(l) {}
+struct Life : ScalingComponent {
+  Life(double l = 0.0) : ScalingComponent(l), current(l) {}
 
-  double current, base, total;
+  double current;
 };
