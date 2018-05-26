@@ -4,6 +4,7 @@
  * and less.
  */
 #include "components/Life.hpp"
+#include "components/Mana.hpp"
 #include "entityx/entityx.h"
 
 class ScalingModifierSystem : public entityx::System<ScalingModifierSystem> {
