@@ -14,12 +14,19 @@
 namespace ex = entityx;
 
 TEST_CASE("increased life scales appropriately", "[modifiers][character]") {
-  ex::Entity e;
   ex::EventManager events;
-  ex::EntityManager manager(events);
-  e = manager.create();
+  ex::EntityManager entities(events);
+  ex::SystemManager systems(entities, events);
+
+  ex::Entity e;
+  e = entities.create();
+
+  systems.add<ScalingModifierSystem>();
+  systems.configure();
 
   Character c1("ranger", e);
   e.assign<Life>(100);
-  CHECK(100 == e.component<Life>()->life);
+  CHECK(100 == e.component<Life>()->total);
+  systems.update<ScalingModifierSystem>(0.0);
+  CHECK(110 == e.component<Life>()->total);
 }

@@ -1,5 +1,5 @@
 /**
- * components/life.hpp
+ * components/Life.hpp
  * Basic Life component. This should be displayed as an integer, but the internal representation
  * is a double.
  */
@@ -8,7 +8,7 @@
 #include "entityx/entityx.h"
 
 struct Life : entityx::Component<Life> {
-  Life(double l = 0.0) : life(l) {}
+  Life(double l = 0.0) : current(l), base(l), total(l) {}
 
-  double life;
+  double current, base, total;
 };
