@@ -9,6 +9,8 @@
 struct Modifier {
 	Modifier(std::string id) : uid(id) {}
 
+	std::string getId() { return uid; }
+
 private:
 	std::string uid;
 };
