@@ -91,9 +91,19 @@ add_executable(kadopon src/main.cpp ${KADOPON_SOURCES})
 target_link_libraries(kadopon simple-websocket-server)
 target_link_libraries(kadopon entityx)
 target_link_libraries(kadopon fmt-header-only)
+
+# boost
 find_package(Boost 1.54.0 COMPONENTS system thread filesystem REQUIRED)
 target_link_libraries(kadopon ${Boost_LIBRARIES})
 target_include_directories(kadopon PRIVATE ${Boost_INCLUDE_DIR})
+
+# openssl
+if(APPLE)
+    set(OPENSSL_ROOT_DIR "/usr/local/opt/openssl")
+endif()
+find_package(OpenSSL REQUIRED)
+target_link_libraries(kadopon ${OPENSSL_LIBRARIES})
+target_include_directories(kadopon PRIVATE ${OPENSSL_INCLUDE_DIR})
 
 # testing subfolder
 enable_testing()
