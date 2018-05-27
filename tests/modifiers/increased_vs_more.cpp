@@ -8,7 +8,6 @@
 #include "catch.hpp"
 #include "components/Life.hpp"
 #include "components/Mana.hpp"
-#include "entities/Character.hpp"
 #include "entityx/entityx.h"
 #include "modifiers/IncreasedModifier.hpp"
 #include "systems/ScalingModifierSystem.hpp"
@@ -20,9 +19,7 @@ TEST_CASE("increased life scales appropriately", "[modifiers][character]") {
   ex::EntityManager entities(events);
   ex::SystemManager systems(entities, events);
 
-  Character c1("ranger");
-  ex::Entity e = (ex::Entity) c1;
-  e = entities.create();
+  ex::Entity e = entities.create();
 
 
   systems.add<ScalingModifierSystem>();

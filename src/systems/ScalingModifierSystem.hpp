@@ -5,7 +5,6 @@
  */
 #include "components/Life.hpp"
 #include "components/Mana.hpp"
-#include "entities/Character.hpp"
 #include "entityx/entityx.h"
 
 class ScalingModifierSystem : public entityx::System<ScalingModifierSystem> {
