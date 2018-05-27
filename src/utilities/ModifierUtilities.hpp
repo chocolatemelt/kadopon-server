@@ -14,23 +14,25 @@
 class ModifierUtilities {
 public:
 	template <typename M>
-	static void add_modifier(std::string uid, entityx::ComponentHandle<M> handle, int val) {
-		if(uid == "FLAT_MAX_LIFE") {
-			// check that M is a ScalingComponent before attempting to add the modifier
-			if(std::is_base_of<ScalingComponent, M>::value) {
-				handle->flat += val;
-			}
+	static void add_flat_mod(entityx::ComponentHandle<M> handle, int val) {
+		if(std::is_base_of<ScalingComponent, M>::value) {
+			handle->flat += val;
 		}
-		else if(uid == "INC_MAX_LIFE") {
-			if(std::is_base_of<ScalingComponent, M>::value) {
-				handle->additive += val;
-			}
+	}
+
+	template <typename M>
+	static void add_additive_mod(entityx::ComponentHandle<M> handle, int val) {
+		if(std::is_base_of<ScalingComponent, M>::value) {
+			handle->additive += val;
 		}
-		else if(uid == "MORE_MAX_LIFE") {
-			if(std::is_base_of<ScalingComponent, M>::value) {
-				if(handle->multipliers.find(val) != handle->multipliers.end()) ++handle->multipliers[val];
-				else handle->multipliers[val] = 1;
-			}
+	}
+
+	template <typename M>
+	static void add_multiplicative_mod(entityx::ComponentHandle<M> handle, int val) {
+		if(std::is_base_of<ScalingComponent, M>::value) {
+			// multiplicative modifiers are held in a map with their count; simply increment if it exists
+			if(handle->multipliers.find(val) != handle->multipliers.end()) ++handle->multipliers[val];
+			else handle->multipliers[val] = 1;
 		}
 	}
 
@@ -38,7 +40,7 @@ public:
 	static void update_total(entityx::ComponentHandle<M> handle) {
 		if(std::is_base_of<ScalingComponent, M>::value) {
 			handle->total = (handle->base + handle->flat) * (1 + (handle->additive / 100.0));
-			// apply more multipliers
+			// apply more multipliers separately, based on their count
 			for(auto multi : handle->multipliers) {
 				handle->total *= std::pow((1 + (multi.first / 100.0)), multi.second);
 			}

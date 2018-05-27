@@ -35,18 +35,18 @@ TEST_CASE("increased life scales appropriately", "[modifiers][character]") {
   CHECK(100 == e.component<Mana>()->total);
 
   // add 10% increased maximum life modifier
-  ModifierUtilities::add_modifier("INC_MAX_LIFE", e.component<Life>(), 10);
+  ModifierUtilities::add_additive_mod(e.component<Life>(), 10);
   systems.update<ScalingModifierSystem>(0.0);
   CHECK(110 == static_cast<int>(e.component<Life>()->total));
 
   // add +55 to maximum life modifier
-  ModifierUtilities::add_modifier("FLAT_MAX_LIFE", e.component<Life>(), 55);
+  ModifierUtilities::add_flat_mod(e.component<Life>(), 55);
   systems.update<ScalingModifierSystem>(0.0);
   CHECK(170 == static_cast<int>(e.component<Life>()->total));
 
   // add two 10% more life modifiers
-  ModifierUtilities::add_modifier("MORE_MAX_LIFE", e.component<Life>(), 10);
-  ModifierUtilities::add_modifier("MORE_MAX_LIFE", e.component<Life>(), 10);
+  ModifierUtilities::add_multiplicative_mod(e.component<Life>(), 10);
+  ModifierUtilities::add_multiplicative_mod(e.component<Life>(), 10);
   systems.update<ScalingModifierSystem>(0.0);
   CHECK(206 == static_cast<int>(e.component<Life>()->total));
 }
