@@ -8,7 +8,6 @@
 #include "catch.hpp"
 #include "components/Life.hpp"
 #include "components/Mana.hpp"
-#include "components/modifiers/IncreasedLife.hpp"
 #include "entityx/entityx.h"
 #include "systems/ScalingModifierSystem.hpp"
 
@@ -29,9 +28,6 @@ TEST_CASE("increased life scales appropriately", "[modifiers][character]") {
 
   e.assign<Mana>(100);
   CHECK(100 == e.component<Mana>()->total);
-
-  e.assign<IncreasedLife>(10);
-  CHECK(10 == e.component<IncreasedLife>()->total);
 
   systems.update<ScalingModifierSystem>(0.0);
   CHECK(110 == e.component<Life>()->total);

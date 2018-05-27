@@ -3,13 +3,11 @@
 void ScalingModifierSystem::update(entityx::EntityManager &em,
 	                                 entityx::EventManager &es,
 																   double dt) {
-	for(auto m : em.entities_with_components<Life, IncreasedLife>()) {
+	for(auto m : em.entities_with_components<Life>()) {
 		entityx::ComponentHandle<Life> life;
-		entityx::ComponentHandle<IncreasedLife> incLife;
 		m.unpack<Life>(life);
-		m.unpack<IncreasedLife>(incLife);
 
-		life->total = life->base * (1 + (incLife->total / 100.0));
+		life->total = life->base * (1 + (life->additive_modifier / 100.0));
 		life->total = (int) life->total;
 	}
 }
