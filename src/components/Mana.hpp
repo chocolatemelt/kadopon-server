@@ -9,7 +9,7 @@
 #include "entityx/entityx.h"
 
 struct Mana : ScalingComponent {
-  Mana(double m = 0.0) : ScalingComponent(m), current(m) {}
-
   double current;
+
+  Mana(double m = 0.0) : ScalingComponent(m), current(m) {}
 };

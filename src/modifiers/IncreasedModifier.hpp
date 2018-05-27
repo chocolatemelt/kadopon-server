@@ -9,7 +9,7 @@
 
 template <typename T>
 struct IncreasedModifier : Modifier {
-	IncreasedModifier(std::string id, T v) : Modifier(id), value(v) {}
-
 	T value;
+
+	IncreasedModifier(std::string id, T v) : Modifier(id), value(v) {}
 };

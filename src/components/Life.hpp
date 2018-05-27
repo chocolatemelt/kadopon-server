@@ -9,7 +9,7 @@
 #include "entityx/entityx.h"
 
 struct Life : ScalingComponent {
-  Life(double l = 0.0) : ScalingComponent(l), current(l) {}
-
   double current;
+
+  Life(double l = 0.0) : ScalingComponent(l), current(l) {}
 };
