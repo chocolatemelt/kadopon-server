@@ -4,6 +4,7 @@
  */
 #pragma once
 
+#include <cmath>
 #include <string>
 #include <type_traits>
 
@@ -39,7 +40,7 @@ public:
 			handle->total = (handle->base + handle->flat) * (1 + (handle->additive / 100.0));
 			// apply more multipliers
 			for(auto multi : handle->multipliers) {
-				for(int i = 0; i < multi.second; ++i) handle->total *= 1 + (multi.first / 100.0);
+				handle->total *= std::pow((1 + (multi.first / 100.0)), multi.second);
 			}
 		}
 	}
