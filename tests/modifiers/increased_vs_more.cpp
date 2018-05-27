@@ -8,10 +8,9 @@
 #include "catch.hpp"
 #include "components/Life.hpp"
 #include "components/Mana.hpp"
+#include "components/modifiers/IncreasedLife.hpp"
 #include "entityx/entityx.h"
-#include "modifiers/IncreasedModifier.hpp"
 #include "systems/ScalingModifierSystem.hpp"
-#include "utilities/ModifierUtilities.hpp"
 
 namespace ex = entityx;
 
@@ -31,9 +30,8 @@ TEST_CASE("increased life scales appropriately", "[modifiers][character]") {
   e.assign<Mana>(100);
   CHECK(100 == e.component<Mana>()->total);
 
-  e.assign<ModifierList>();
-  IncreasedModifier<int> incMaxLife("MAXIMUM_LIFE", 10);
-  CHECK(1 == ModifierUtilities::addModifier(e, incMaxLife));
+  e.assign<IncreasedLife>(10);
+  CHECK(10 == e.component<IncreasedLife>()->total);
 
   systems.update<ScalingModifierSystem>(0.0);
   CHECK(110 == e.component<Life>()->total);
