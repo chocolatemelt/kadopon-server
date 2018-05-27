@@ -7,7 +7,7 @@ void ScalingModifierSystem::update(entityx::EntityManager &em,
 		entityx::ComponentHandle<Life> life;
 		m.unpack<Life>(life);
 
-		life->total = life->base * (1 + (life->additive_modifier / 100.0));
+		life->total = (life->base + life->flat) * (1 + (life->additive / 100.0));
 		life->total = (int) life->total;
 	}
 }
