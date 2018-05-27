@@ -108,4 +108,6 @@ target_include_directories(kadopon PRIVATE ${OPENSSL_INCLUDE_DIR})
 # testing subfolder
 enable_testing()
 add_subdirectory(tests)
+
+# output compilation flags
 message(STATUS "compilation flags: ${CMAKE_CXX_FLAGS}")
