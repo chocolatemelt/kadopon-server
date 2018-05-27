@@ -11,6 +11,7 @@
 #include "entityx/entityx.h"
 #include "modifiers/IncreasedModifier.hpp"
 #include "systems/ScalingModifierSystem.hpp"
+#include "utilities/ModifierUtilities.hpp"
 
 namespace ex = entityx;
 
@@ -21,20 +22,20 @@ TEST_CASE("increased life scales appropriately", "[modifiers][character]") {
 
   ex::Entity e = entities.create();
 
-
   systems.add<ScalingModifierSystem>();
   systems.configure();
 
   e.assign<Life>(100);
   CHECK(100 == e.component<Life>()->total);
-  systems.update<ScalingModifierSystem>(0.0);
-  CHECK(110 == e.component<Life>()->total);
 
   e.assign<Mana>(100);
   CHECK(100 == e.component<Mana>()->total);
-  systems.update<ScalingModifierSystem>(0.0);
-  CHECK(110 == e.component<Mana>()->total);
 
-  // IncreasedModifier<int> incMaxLife("MAXIMUM_LIFE", 10);
-  // c1.testAddModifier(incMaxLife);
+  e.assign<ModifierList>();
+  IncreasedModifier<int> incMaxLife("MAXIMUM_LIFE", 10);
+  CHECK(1 == ModifierUtilities::addModifier(e, incMaxLife));
+
+  systems.update<ScalingModifierSystem>(0.0);
+  CHECK(110 == e.component<Life>()->total);
+  CHECK(100 == e.component<Mana>()->total);
 }
