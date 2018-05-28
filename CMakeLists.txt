@@ -25,7 +25,6 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 # header include directories
 include_directories(
   ${PROJECT_SOURCE_DIR}/src
-  ${PROJECT_SOURCE_DIR}/src/rng
 
   ${PROJECT_SOURCE_DIR}/ext
   ${PROJECT_SOURCE_DIR}/ext/entityx
