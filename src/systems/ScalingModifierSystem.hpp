@@ -3,7 +3,8 @@
  * Generic system for scaling modifiers. Supports increased, reduced, more,
  * and less.
  */
-#include "components/Components.hpp"
+#include "components/attributes/Attributes.hpp"
+#include "components/modifiers/Modifiers.hpp"
 #include "entityx/entityx.h"
 #include "utilities/ModifierUtilities.hpp"
 
