@@ -40,7 +40,7 @@ TEST_CASE("equipping item scales life appropriately", "[modifiers][character][it
   // 7% more maximum life
   // this likely would never show up as an actual item, but it tests flat vs multiplicative mods
   ex::Entity chest = entities.create();
-  chest.assign<FlatLife>(55);
+  ex::ComponentHandle<FlatLife> x = chest.assign<FlatLife>(55);
   chest.assign<MultiplicativeLife>();
   ModifierUtilities::modifier_add_multiplier<MultiplicativeLife>(chest.component<MultiplicativeLife>(), 7);
 
