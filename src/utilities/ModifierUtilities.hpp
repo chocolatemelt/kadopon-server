@@ -19,8 +19,11 @@ public:
                            entityx::ComponentHandle<Multi> multi) {
     base->maximum = flat->value * (1 + (add->value / 100.0));
     // apply more multipliers separately, based on their count
-    for(auto multi : multi->multipliers) {
+    for(auto multi : multi->more) {
       base->maximum *= std::pow((1 + (multi.first / 100.0)), multi.second);
+    }
+    for(auto multi : multi->less) {
+      base->maximum /= std::pow((1 + (multi.first / 100.0)), multi.second);
     }
   }
 

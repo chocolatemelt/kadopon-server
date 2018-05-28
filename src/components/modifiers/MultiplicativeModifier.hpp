@@ -8,5 +8,6 @@
 #include "entityx/entityx.h"
 
 struct MultiplicativeModifier : entityx::Component<MultiplicativeModifier> {
-  std::unordered_map<int, int> multipliers;
+  std::unordered_map<int, int> more;
+  std::unordered_map<int, int> less;
 };
