@@ -6,6 +6,7 @@
 #include "catch.hpp"
 #include "components/attributes/Attributes.hpp"
 #include "components/modifiers/Modifiers.hpp"
+#include "entities/Item.hpp"
 #include "entityx/entityx.h"
 #include "systems/ScalingModifierSystem.hpp"
 #include "utilities/ItemUtilities.hpp"
@@ -44,5 +45,10 @@ TEST_CASE("equipping item scales life appropriately", "[modifiers][character][it
   chest.assign<MultiplicativeLife>();
   ModifierUtilities::modifier_add_multiplier<MultiplicativeLife>(chest.component<MultiplicativeLife>(), 7);
 
-  ItemUtilities::equip_item(ranger, chest);
+  Modifier *y = x.get();
+
+  Item item(chest);
+  item.add_modifier(y);
+
+  // ItemUtilities::equip_item(ranger, chest);
 }
