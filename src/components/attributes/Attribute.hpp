@@ -8,6 +8,6 @@
 #include "entityx/entityx.h"
 
 struct Attribute : entityx::Component<Attribute> {
-  double current = 0
+  double current = 0;
   double maximum = 0;
 };
