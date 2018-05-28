@@ -1,5 +1,4 @@
 /**
- * utilities/ModifierUtilities.hpp
  * Various utility functions for managing modifiers.
  */
 #pragma once

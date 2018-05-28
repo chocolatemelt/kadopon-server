@@ -1,5 +1,4 @@
 /**
- * tests/modifiers/increased_vs_more.cpp
  * Tests standard positive scaling modifier interactions with components.
  * "increased" modifiers are an additive scale while "more" modifiers are multiplicative.
  */
