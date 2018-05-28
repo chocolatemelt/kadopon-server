@@ -6,7 +6,5 @@
 #include "components/modifiers/Modifier.hpp"
 
 struct AdditiveModifier : Modifier {
-  int value = 0;
-
-  AdditiveModifier(int v) : value(v) {}
+  AdditiveModifier(int v) : Modifier(v) {}
 };
