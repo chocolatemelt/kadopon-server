@@ -5,6 +5,6 @@
 
 #include "entityx/entityx.h"
 
-struct ScalingComponent : entityx::Component<ScalingComponent> {
+struct AdditiveModifier : entityx::Component<AdditiveModifier> {
   int value = 0;
 };
