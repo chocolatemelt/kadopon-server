@@ -6,6 +6,8 @@
  */
 #pragma once
 
+#include <string>
+
 #include "entityx/entityx.h"
 
 struct Modifier : entityx::Component<Modifier> {
@@ -14,4 +16,9 @@ struct Modifier : entityx::Component<Modifier> {
   std::unordered_map<int, int> less;
 
   Modifier(int v) : value(v) {}
+
+  std::string id() { return id_; }
+
+protected:
+  std::string id_;
 };
