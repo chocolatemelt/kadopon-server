@@ -7,4 +7,6 @@
 
 struct AdditiveModifier : entityx::Component<AdditiveModifier> {
   int value = 0;
+
+  AdditiveModifier(int v) : value(v) {}
 };

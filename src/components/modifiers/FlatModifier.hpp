@@ -7,4 +7,6 @@
 
 struct FlatModifier : entityx::Component<FlatModifier> {
   int value = 0;
+
+  FlatModifier(int v) : value(v) {}
 };
