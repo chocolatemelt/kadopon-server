@@ -5,8 +5,8 @@
  */
 #include "components/Life.hpp"
 #include "components/Mana.hpp"
-#include "components/modifiers/IncreasedLife.hpp"
 #include "entityx/entityx.h"
+#include "utilities/ModifierUtilities.hpp"
 
 class ScalingModifierSystem : public entityx::System<ScalingModifierSystem> {
 public:
