@@ -3,9 +3,9 @@
  */
 #pragma once
 
-#include "entityx/entityx.h"
+#include "components/modifiers/Modifier.hpp"
 
-struct FlatModifier : entityx::Component<FlatModifier> {
+struct FlatModifier : Modifier {
   int value = 0;
 
   FlatModifier(int v) : value(v) {}

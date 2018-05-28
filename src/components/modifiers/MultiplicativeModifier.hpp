@@ -5,9 +5,9 @@
 
 #include <unordered_map>
 
-#include "entityx/entityx.h"
+#include "components/modifiers/Modifier.hpp"
 
-struct MultiplicativeModifier : entityx::Component<MultiplicativeModifier> {
+struct MultiplicativeModifier : Modifier {
   std::unordered_map<int, int> more;
   std::unordered_map<int, int> less;
 };

@@ -1,6 +1,6 @@
 #include <limits>
 
-#include "xorshift.hpp"
+#include "rng/xorshift.hpp"
 
 static const xorshift::state_type s_default_seed = {
   123456789, 362436069, 521288629, 88675123

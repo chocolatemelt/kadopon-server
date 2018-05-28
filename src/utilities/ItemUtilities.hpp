@@ -16,7 +16,9 @@
 
 class ItemUtilities {
 public:
-  static void equip_item(entityx::Entity character, entityx::Entity item);
+  static void equip_item(entityx::Entity character, entityx::Entity item) {
+    
+  }
 
 private:
   ItemUtilities() {}

@@ -7,7 +7,7 @@
 
 #include "catch.hpp"
 #include "fmt/format.h"
-#include "xorshift.hpp"
+#include "rng/xorshift.hpp"
 
 TEST_CASE("RNG distribution hits 0-99", "[rng]") {
 	// switched to mt19937 for mac compilation... high sierra has a problem with xorshift apparently

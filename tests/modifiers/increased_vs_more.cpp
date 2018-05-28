@@ -22,7 +22,7 @@ TEST_CASE("increased life scales appropriately", "[modifiers][character]") {
   // add the modifier system
   systems.add<ScalingModifierSystem>();
   systems.configure();
-  
+
   // create an example entity
   ex::Entity e = entities.create();
 
@@ -46,8 +46,8 @@ TEST_CASE("increased life scales appropriately", "[modifiers][character]") {
   CHECK(170 == static_cast<int>(e.component<Life>()->maximum));
 
   // add two 10% more life modifiers
-  ModifierUtilities::modifier_add_multiplier(e.component<MultiplicativeLife>(), 10);
-  ModifierUtilities::modifier_add_multiplier(e.component<MultiplicativeLife>(), 10);
+  ModifierUtilities::modifier_add_multiplier<MultiplicativeLife>(e.component<MultiplicativeLife>(), 10);
+  ModifierUtilities::modifier_add_multiplier<MultiplicativeLife>(e.component<MultiplicativeLife>(), 10);
   systems.update<ScalingModifierSystem>(0.0);
   CHECK(206 == static_cast<int>(e.component<Life>()->maximum));
 }
