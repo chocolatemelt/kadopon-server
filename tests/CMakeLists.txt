@@ -10,6 +10,7 @@ set(TEST_SOURCES
   entityx/TagsComponent_test.cc
 
   modifiers/increased_vs_more.cpp
+  modifiers/item_applies_modifiers.cpp
 
   rng/rng.cpp
 )
