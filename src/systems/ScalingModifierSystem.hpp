@@ -3,8 +3,7 @@
  * Generic system for scaling modifiers. Supports increased, reduced, more,
  * and less.
  */
-#include "components/Life.hpp"
-#include "components/Mana.hpp"
+#include "components/Components.hpp"
 #include "entityx/entityx.h"
 #include "utilities/ModifierUtilities.hpp"
 

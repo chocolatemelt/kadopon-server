@@ -6,8 +6,7 @@
 #include <vector>
 
 #include "catch.hpp"
-#include "components/Life.hpp"
-#include "components/Mana.hpp"
+#include "components/Components.hpp"
 #include "entityx/entityx.h"
 #include "systems/ScalingModifierSystem.hpp"
 #include "utilities/ModifierUtilities.hpp"
