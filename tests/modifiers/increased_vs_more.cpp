@@ -1,5 +1,4 @@
 /**
- * tests/modifiers/increased_vs_more.cpp
  * Tests standard positive scaling modifier interactions with components.
  * "increased" modifiers are an additive scale while "more" modifiers are multiplicative.
  */
@@ -20,12 +19,12 @@ TEST_CASE("increased life scales appropriately", "[modifiers][character]") {
   ex::EntityManager entities(events);
   ex::SystemManager systems(entities, events);
 
-  // create an example entity
-  ex::Entity e = entities.create();
-
   // add the modifier system
   systems.add<ScalingModifierSystem>();
   systems.configure();
+  
+  // create an example entity
+  ex::Entity e = entities.create();
 
   // give entity Life attribute
   // naturally, we need to assign the appropriate stats
