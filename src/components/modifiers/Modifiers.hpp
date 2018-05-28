@@ -3,4 +3,6 @@
  */
 #pragma once
 
-#include "components/attributes/Life.hpp"
+#include "components/modifiers/FlatLife.hpp"
+#include "components/modifiers/AdditiveLife.hpp"
+#include "components/modifiers/MultiplicativeLife.hpp"
