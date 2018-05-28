@@ -8,6 +8,5 @@
 #include "components/modifiers/Modifier.hpp"
 
 struct MultiplicativeModifier : Modifier {
-  std::unordered_map<int, int> more;
-  std::unordered_map<int, int> less;
+  MultiplicativeModifier() : Modifier(0) {}
 };
