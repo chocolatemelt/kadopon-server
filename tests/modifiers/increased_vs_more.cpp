@@ -30,6 +30,11 @@ TEST_CASE("increased life scales appropriately", "[modifiers][character]") {
   // give entity Life attribute
   // naturally, we need to assign the appropriate stats
   e.assign<Life>();
+  e.assign<AdditiveLife>(0);
+  e.assign<FlatLife>(100);
+  e.assign<MultiplicativeLife>();
+  systems.update<ScalingModifierSystem>(0.0);
+  CHECK(100 == static_cast<int>(e.component<Life>()->maximum));
 
   // // add 10% increased maximum life modifier
   // ModifierUtilities::add_additive_mod(e.component<Life>(), 10);
