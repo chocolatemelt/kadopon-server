@@ -3,9 +3,17 @@
 void ScalingModifierSystem::update(entityx::EntityManager &em,
 	                                 entityx::EventManager &es,
 																   double dt) {
-	entityx::ComponentHandle<Life> life;
-	for(auto l : em.entities_with_components<Life>()) {
-		l.unpack<Life>(life);
-		life->life += 10;
+	for(auto m : em.entities_with_components<Life, AdditiveLife, FlatLife, MultiplicativeLife>()) {
+		// grab component handles
+		entityx::ComponentHandle<Life> base;
+		entityx::ComponentHandle<AdditiveLife> add;
+		entityx::ComponentHandle<FlatLife> flat;
+		entityx::ComponentHandle<MultiplicativeLife> multi;
+		m.unpack<Life>(base);
+		m.unpack<AdditiveLife>(add);
+		m.unpack<FlatLife>(flat);
+		m.unpack<MultiplicativeLife>(multi);
+
+		ModifierUtilities::update_total(base, add, flat, multi);
 	}
 }

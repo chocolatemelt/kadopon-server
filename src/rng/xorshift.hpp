@@ -1,5 +1,4 @@
 /**
- * xorshift.hpp
  * Simple shift-and-xor random number generator. This
  * implementation provides an optimal period for its storage size,
  * passes most empirical tests, and is faster and smaller than

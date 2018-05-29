@@ -1,5 +1,4 @@
 /**
- * rng.hpp
  * Simple random number generator using C++11 STL, with support for custom probability
  * distributions.
  */
