@@ -4,6 +4,7 @@
  */
 #pragma once
 
+#include <utility>
 #include <vector>
 
 #include "components/modifiers/FlatModifier.hpp"
@@ -15,5 +16,13 @@ public:
 
   Item(entityx::Entity e) : ref(e) {}
 
-  void add_modifier(Modifier *);
+  /**
+   * Assign a modifier to the wrapped entity and push the modifier handle to modifiers vector.
+   * Forwards the arguments for the modifier to entity.assign().
+   */
+  template <typename M, typename ... Args>
+  void add_modifier(Args && ... args) {
+    Modifier *handle = ref.assign<M>(std::forward<Args>(args) ...).get();
+    modifiers.push_back(handle);
+  }
 };
