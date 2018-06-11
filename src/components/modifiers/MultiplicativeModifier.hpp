@@ -9,4 +9,9 @@
 
 struct MultiplicativeModifier : Modifier {
   MultiplicativeModifier() : Modifier(0) {}
+  
+  MultiplicativeModifier(int v) : Modifier(0) {
+    if(v > 0) ++more[v];
+    else if(v < 0) ++less[v];
+  }
 };

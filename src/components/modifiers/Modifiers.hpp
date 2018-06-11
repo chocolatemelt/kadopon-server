@@ -3,6 +3,19 @@
  */
 #pragma once
 
-#include "components/modifiers/FlatLife.hpp"
-#include "components/modifiers/AdditiveLife.hpp"
-#include "components/modifiers/MultiplicativeLife.hpp"
+#include "components/modifiers/FlatModifier.hpp"
+#include "components/modifiers/AdditiveModifier.hpp"
+#include "components/modifiers/MultiplicativeModifier.hpp"
+
+struct FlatLife : FlatModifier {
+  FlatLife(int v) : FlatModifier(v) { id_ = "FLAT_LIFE"; }
+};
+
+struct AdditiveLife : AdditiveModifier {
+  AdditiveLife(int v) : AdditiveModifier(v) { id_ = "ADDITIVE_LIFE"; }
+};
+
+struct MultiplicativeLife : MultiplicativeModifier {
+  MultiplicativeLife() : MultiplicativeModifier() { id_ = "MULTIPLICATIVE_LIFE"; }
+  MultiplicativeLife(int v) : MultiplicativeModifier(v) { id_ = "MULTIPLICATIVE_LIFE"; }
+};

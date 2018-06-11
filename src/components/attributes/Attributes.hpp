@@ -3,4 +3,19 @@
  */
 #pragma once
 
-#include "components/attributes/Life.hpp"
+#include "components/attributes/Attribute.hpp"
+
+struct Life : Attribute {};
+struct Mana : Attribute {};
+struct LifeRegen : Attribute{};
+struct ManaRegen : Attribute{};
+struct Armour : Attribute{};
+struct Evasion : Attribute{};
+struct Accuracy : Attribute{};
+struct Block : Attribute{};
+struct Dodge : Attribute{};
+struct FireResist : Attribute{};
+struct ColdResist : Attribute{};
+struct LightResist : Attribute{};
+struct CritChance : Attribute{};
+struct CritMulti : Attribute{};
