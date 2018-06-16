@@ -15,6 +15,10 @@ struct Position {
       && y == rhs.y
     );
   }
+
+  bool operator!=(const Position &rhs) const {
+    return !(*this == rhs);
+  }
 };
 
 namespace std {
