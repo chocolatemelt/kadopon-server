@@ -1,6 +1,6 @@
 /**
- * tests/rng/rng.cpp
- * Basic RNG tests.
+ * tests/random/random.cpp
+ * Basic randomness tests.
  */
 
 #include <random>
