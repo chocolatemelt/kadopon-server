@@ -33,7 +33,6 @@ include_directories(
 # sources
 set(KADOPON_SOURCES
   ${PROJECT_SOURCE_DIR}/src/entities/Item.cpp
-  ${PROJECT_SOURCE_DIR}/src/rng/xorshift.cpp
   ${PROJECT_SOURCE_DIR}/src/systems/ScalingModifierSystem.cpp
   ${PROJECT_SOURCE_DIR}/src/utilities/ItemUtilities.cpp
   ${PROJECT_SOURCE_DIR}/src/utilities/RandomUtilities.cpp
