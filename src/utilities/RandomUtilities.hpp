@@ -2,10 +2,10 @@
 
 #pragma once
 
-class RNGUtilities {
+class RandomUtilities {
 public:
 	static int roll_movement(int);
 
 private:
-	RNGUtilities() {}
+	RandomUtilities() {}
 };
