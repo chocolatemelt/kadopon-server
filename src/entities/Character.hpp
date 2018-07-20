@@ -4,6 +4,8 @@
  */
 #pragma once
 
+#include "entityx/entityx.h"
+
 class Character {
 public:
   entityx::Entity ref;
