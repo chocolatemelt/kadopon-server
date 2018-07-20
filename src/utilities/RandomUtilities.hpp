@@ -1,4 +1,6 @@
-//utility functions involving randomness
+/**
+ * Utility functions involving for random number generation.
+ */
 
 #pragma once
 
