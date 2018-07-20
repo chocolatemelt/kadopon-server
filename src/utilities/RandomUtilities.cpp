@@ -2,7 +2,7 @@
 
 #include "utilities/RandomUtilities.hpp"
 
-int RandomUtilities::roll_movement(int numofrolls) {
+int RandomUtilities::roll_movement(int n) {
 	std::random_device rd;
 	std::mt19937 gen(rd());
 	// see docs for full distribution of movement rolls
