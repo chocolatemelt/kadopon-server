@@ -8,10 +8,12 @@
 #include "components/modifiers/MultiplicativeModifier.hpp"
 
 struct FlatLife : FlatModifier {
+  FlatLife() : FlatModifier() { id_ = "FLAT_LIFE"; }
   FlatLife(int v) : FlatModifier(v) { id_ = "FLAT_LIFE"; }
 };
 
 struct AdditiveLife : AdditiveModifier {
+  AdditiveLife() : AdditiveModifier() { id_ = "ADDITIVE_LIFE"; }
   AdditiveLife(int v) : AdditiveModifier(v) { id_ = "ADDITIVE_LIFE"; }
 };
 

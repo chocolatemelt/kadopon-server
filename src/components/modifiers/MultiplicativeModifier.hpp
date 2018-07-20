@@ -8,9 +8,9 @@
 #include "components/modifiers/Modifier.hpp"
 
 struct MultiplicativeModifier : Modifier {
-  MultiplicativeModifier() : Modifier(0) {}
-  
-  MultiplicativeModifier(int v) : Modifier(0) {
+  MultiplicativeModifier() : Modifier() {}
+
+  MultiplicativeModifier(int v) : Modifier() {
     if(v > 0) ++more[v];
     else if(v < 0) ++less[v];
   }

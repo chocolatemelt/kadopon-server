@@ -15,6 +15,7 @@ struct Modifier : entityx::Component<Modifier> {
   std::unordered_map<int, int> more;
   std::unordered_map<int, int> less;
 
+  Modifier() : value(0) {}
   Modifier(int v) : value(v) {}
 
   std::string id() { return id_; }
