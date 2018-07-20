@@ -1,12 +1,12 @@
 /**
  * Utility functions involving for random number generation.
  */
-
+#include <vector>
 #pragma once
 
 class RandomUtilities {
 public:
-	static int roll_movement(int);
+	static std::vector<int> roll_movement(int);
 
 private:
 	RandomUtilities() {}

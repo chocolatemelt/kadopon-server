@@ -6,6 +6,7 @@
 #include <random>
 #include <iostream>
 #include <map>
+#include <vector>
 
 #include "catch.hpp"
 #include "utilities/RandomUtilities.hpp"
@@ -14,8 +15,14 @@ TEST_CASE("Die distribution hits 0-6", "[random]") {
     std::map<int, int> rolls;
 
     // roll the dice 10k times
+    /*
     for(int i=0; i<10000; ++i) {
         ++rolls[RandomUtilities::roll_movement(1)];
+    }
+    */
+
+    for(auto x :  RandomUtilities::roll_movement(10000)) {
+        ++rolls[x];
     }
 
     // print distribution
