@@ -7,14 +7,18 @@
 #include <utility>
 #include <vector>
 
-#include "components/modifiers/FlatModifier.hpp"
+#include "components/ModifierList.hpp"
 
 class Item {
 public:
-  std::vector<Modifier *> modifiers;
   entityx::Entity ref;
+  ModifierList *modifiers;
 
-  Item(entityx::Entity e) : ref(e) {}
+  /**
+   * Item constructor requires an entity to be passed in (to decorate).
+   * @param entityx::Entity entity
+   */
+  Item(entityx::Entity);
 
   /**
    * Assign a modifier to the wrapped entity and push the modifier handle to modifiers vector.
@@ -23,6 +27,6 @@ public:
   template <typename M, typename ... Args>
   void add_modifier(Args && ... args) {
     Modifier *handle = ref.assign<M>(std::forward<Args>(args) ...).get();
-    modifiers.push_back(handle);
+    modifiers->list.push_back(handle);
   }
 };

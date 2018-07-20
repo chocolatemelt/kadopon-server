@@ -2,7 +2,7 @@
 #include "utilities/ItemUtilities.hpp"
 
 void ItemUtilities::equip_item(entityx::Entity character, Item item) {
-  for(auto mod : item.modifiers) {
+  for(auto mod : item.modifiers->list) {
     if(mod->id() == "FLAT_LIFE") {
       // get character handle for flat life
       entityx::ComponentHandle<FlatLife> handle = character.component<FlatLife>();
