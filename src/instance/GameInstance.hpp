@@ -12,5 +12,8 @@ public:
   entityx::EntityManager entities;
   entityx::SystemManager systems;
 
-  GameInstance() : events(), entities(events), systems(entities, events) {}
+  /**
+   * GameInstance default constructor. Sets up a Kadopon game with default values.
+   */
+  GameInstance();
 };
