@@ -16,4 +16,9 @@ public:
    * GameInstance default constructor. Sets up a Kadopon game with default values.
    */
   GameInstance();
+
+  /**
+   * Updates scaling modifiers for all relevant characters.
+   */
+  void update_modifiers();
 };

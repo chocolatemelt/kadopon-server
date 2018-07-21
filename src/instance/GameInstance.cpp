@@ -15,3 +15,7 @@ GameInstance::GameInstance() : events(), entities(events), systems(entities, eve
   // configure
   systems.configure();
 }
+
+void GameInstance::update_modifiers() {
+  systems.update<ScalingModifierSystem>(0.0);
+}
