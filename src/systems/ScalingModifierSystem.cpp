@@ -2,7 +2,7 @@
 
 void ScalingModifierSystem::update(entityx::EntityManager &em,
                                    entityx::EventManager &es,
-     double dt) {
+                                   double dt) {
   for(auto m : em.entities_with_components<Life, AdditiveLife, FlatLife, MultiplicativeLife>()) {
     // grab component handles
     entityx::ComponentHandle<Life> base;
