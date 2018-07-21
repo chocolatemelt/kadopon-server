@@ -5,9 +5,9 @@
 #pragma once
 
 class RandomUtilities {
-  public:
-    static std::vector<int> roll_movement(int);
+public:
+  static std::vector<int> roll_movement(int);
 
-  private:
-    RandomUtilities() {}
+private:
+  RandomUtilities() {}
 };
