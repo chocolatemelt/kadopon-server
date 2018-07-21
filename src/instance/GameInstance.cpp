@@ -7,6 +7,7 @@
 GameInstance::GameInstance() : events(), entities(events), systems(entities, events) {
   // set up component dependencies
   systems.add<entityx::deps::Dependency<Life, FlatLife, AdditiveLife, MultiplicativeLife> >();
+  systems.add<entityx::deps::Dependency<Mana, FlatMana, AdditiveMana, MultiplicativeMana> >();
 
   // set up systems
   systems.add<ScalingModifierSystem>();
