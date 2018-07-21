@@ -20,3 +20,7 @@ void ItemUtilities::equip_item(entityx::Entity character, Item item) {
     }
   }
 }
+
+void ItemUtilities::equip_item(Character character, Item item) {
+  equip_item(character.ref, item);
+}
