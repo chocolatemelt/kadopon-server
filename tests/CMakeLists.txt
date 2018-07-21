@@ -9,6 +9,7 @@ set(TEST_SOURCES
   entityx/System_test.cc
   entityx/TagsComponent_test.cc
 
+  character/create_character.cpp
   instance/instance_creation.cpp
   misc/position.cpp
   modifiers/increased_vs_more.cpp

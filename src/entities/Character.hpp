@@ -16,4 +16,13 @@ public:
    * @param entityx::Entity entity
    */
   Character(entityx::Entity);
+
+  /**
+   * Wrapper function to retrieve a component associated with this character.
+   * @return ComponentHandle component handle
+   */
+  template <typename M>
+  entityx::ComponentHandle<M, entityx::EntityManager> component() {
+    return ref.component<M>();
+  }
 };

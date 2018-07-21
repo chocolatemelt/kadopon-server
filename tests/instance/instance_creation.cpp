@@ -8,15 +8,29 @@
 #include "entities/Character.hpp"
 #include "entityx/entityx.h"
 #include "instance/GameInstance.hpp"
+#include "utilities/ItemUtilities.hpp"
 
 TEST_CASE("creates a game instance", "[instance]") {
   GameInstance instance;
-
   Character ranger(instance.entities.create());
+
   instance.entities.each<AdditiveLife>([](entityx::Entity entity, AdditiveLife &mana) {
     CHECK(0 == mana.value);
   });
   instance.entities.each<Life>([](entityx::Entity entity, Life &life) {
-    CHECK(0 == life.current);
+    CHECK(0 == life.maximum);
   });
+}
+
+TEST_CASE("updates modifiers", "[instance][modifiers][character][item]") {
+  GameInstance instance;
+  Character ranger(instance.entities.create());
+  Item helmet(instance.entities.create());
+
+  helmet.add_modifier<FlatLife>(10);
+  helmet.add_modifier<AdditiveLife>(10);
+  helmet.add_modifier<MultiplicativeLife>(10);
+  ItemUtilities::equip_item(ranger, helmet);
+  instance.update_modifiers();
+  CHECK(12 == static_cast<int>(ranger.component<Life>()->maximum));
 }
