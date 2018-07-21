@@ -18,6 +18,12 @@ public:
   GameInstance();
 
   /**
+   * Wraps the entity manager create() function.
+   * @return entityx::Entity newly created entity
+   */
+  entityx::Entity create();
+
+  /**
    * Updates scaling modifiers for all relevant characters.
    */
   void update_modifiers();
