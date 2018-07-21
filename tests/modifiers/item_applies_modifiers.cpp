@@ -43,6 +43,8 @@ TEST_CASE("equipping item scales life appropriately", "[modifiers][character][it
   Item chest(entities.create());
   chest.add_modifier<FlatLife>(55);
   chest.add_modifier<MultiplicativeLife>(7);
+  CHECK(55 == static_cast<int>(chest.ref.component<FlatLife>()->value));
+  CHECK(1 == chest.ref.component<MultiplicativeLife>()->more.find(7)->second);
 
   // equip the chest
   ItemUtilities::equip_item(ranger, chest);
