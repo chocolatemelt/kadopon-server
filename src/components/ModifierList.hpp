@@ -9,5 +9,5 @@
 #include "modifiers/Modifier.hpp"
 
 struct ModifierList : entityx::Component<ModifierList> {
-  std::vector<Modifier *> modifiers;
+  std::vector<Modifier *> list;
 };
