@@ -21,4 +21,5 @@ public:
    * Updates scaling modifiers for all relevant characters.
    */
   void update_modifiers();
+  void update_modifiers(double);
 };
