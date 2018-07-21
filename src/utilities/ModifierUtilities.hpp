@@ -1,16 +1,12 @@
 /**
- * utilities/ModifierUtilities.hpp
  * Various utility functions for managing modifiers.
  */
 #pragma once
 
 #include <cmath>
-// #include <string>
 #include <type_traits>
 
-#include "components/modifiers/AdditiveModifier.hpp"
-#include "components/modifiers/FlatModifier.hpp"
-#include "components/modifiers/MultiplicativeModifier.hpp"
+#include "components/modifiers/Modifiers.hpp"
 #include "entityx/entityx.h"
 
 class ModifierUtilities {
@@ -63,11 +59,11 @@ public:
                            entityx::ComponentHandle<Multi> multi) {
     base->maximum = flat->value * (1 + (add->value / 100.0));
     // apply more multipliers separately, based on their count
-    for(auto multi : multi->more) {
-      base->maximum *= std::pow((1 + (multi.first / 100.0)), multi.second);
+    for(auto& x : multi->more) {
+      base->maximum *= std::pow((1 + (x.first / 100.0)), x.second);
     }
-    for(auto multi : multi->less) {
-      base->maximum /= std::pow((1 + (multi.first / 100.0)), multi.second);
+    for(auto& y : multi->less) {
+      base->maximum /= std::pow((1 + (y.first / 100.0)), y.second);
     }
   }
 

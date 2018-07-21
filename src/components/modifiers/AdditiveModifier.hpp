@@ -3,10 +3,9 @@
  */
 #pragma once
 
-#include "entityx/entityx.h"
+#include "components/modifiers/Modifier.hpp"
 
-struct AdditiveModifier : entityx::Component<AdditiveModifier> {
-  int value = 0;
-
-  AdditiveModifier(int v) : value(v) {}
+struct AdditiveModifier : Modifier {
+  AdditiveModifier() : Modifier() {}
+  AdditiveModifier(int v) : Modifier(v) {}
 };

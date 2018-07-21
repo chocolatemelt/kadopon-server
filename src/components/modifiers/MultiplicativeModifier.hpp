@@ -5,9 +5,13 @@
 
 #include <unordered_map>
 
-#include "entityx/entityx.h"
+#include "components/modifiers/Modifier.hpp"
 
-struct MultiplicativeModifier : entityx::Component<MultiplicativeModifier> {
-  std::unordered_map<int, int> more;
-  std::unordered_map<int, int> less;
+struct MultiplicativeModifier : Modifier {
+  MultiplicativeModifier() : Modifier() {}
+
+  MultiplicativeModifier(int v) : Modifier() {
+    if(v > 0) ++more[v];
+    else if(v < 0) ++less[v];
+  }
 };
