@@ -35,9 +35,9 @@ set(KADOPON_SOURCES
   ${PROJECT_SOURCE_DIR}/src/entities/Character.cpp
   ${PROJECT_SOURCE_DIR}/src/entities/Item.cpp
   ${PROJECT_SOURCE_DIR}/src/instance/GameInstance.cpp
-  ${PROJECT_SOURCE_DIR}/src/rng/xorshift.cpp
   ${PROJECT_SOURCE_DIR}/src/systems/ScalingModifierSystem.cpp
   ${PROJECT_SOURCE_DIR}/src/utilities/ItemUtilities.cpp
+  ${PROJECT_SOURCE_DIR}/src/utilities/RandomUtilities.cpp
 )
 
 # external libraries
