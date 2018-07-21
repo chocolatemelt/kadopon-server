@@ -2,13 +2,6 @@
 set(TEST_SOURCES
   main.cpp
 
-  entityx/Dependencies_test.cc
-  entityx/Entity_test.cc
-  entityx/Event_test.cc
-  entityx/Pool_test.cc
-  entityx/System_test.cc
-  entityx/TagsComponent_test.cc
-
   character/create_character.cpp
   instance/instance_creation.cpp
   misc/position.cpp
