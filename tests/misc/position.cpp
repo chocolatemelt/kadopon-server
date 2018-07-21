@@ -1,7 +1,7 @@
 /**
  * Tests Position objects.
  */
- #include <boost/range/irange.hpp>
+#include <boost/range/irange.hpp>
 #include <unordered_map>
 
 #include "catch.hpp"
