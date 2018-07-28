@@ -6,5 +6,6 @@
 #include "components/modifiers/Modifier.hpp"
 
 struct FlatModifier : Modifier {
+  FlatModifier() : Modifier() {}
   FlatModifier(int v) : Modifier(v) {}
 };
