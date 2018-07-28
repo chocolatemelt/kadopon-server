@@ -17,3 +17,10 @@ void Board::add_tile(Position pos, Tile t) {
        board[pos] = t;
      }
 }
+
+Tile *Board::get(Position pos) {
+  if(board.find(pos) != board.end()) {
+    return &board[pos];
+  }
+  return nullptr;
+}

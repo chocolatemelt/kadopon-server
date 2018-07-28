@@ -32,6 +32,13 @@ public:
    */
   void add_tile(Position, Tile);
 
+  /**
+   * Retrieves the Tile at Position if it exists.
+   * @param  Position position
+   * @return          pointer to Tile at Position
+   */
+  Tile *get(Position);
+
   std::string id() { return id_; }
 
 protected:
