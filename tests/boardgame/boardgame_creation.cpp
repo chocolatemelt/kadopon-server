@@ -18,4 +18,5 @@ TEST_CASE("creates a board", "[boardgame][board][tile]") {
   board.add_tile(Position(0, 1), Tile());
 
   CHECK(2 == board.board.size());
+  CHECK(1 == board.board[Position(0, 0)].mv);
 }
