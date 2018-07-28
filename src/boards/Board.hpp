@@ -7,13 +7,15 @@
 #include <string>
 #include <unordered_map>
 
+#include "misc/Constants.hpp"
 #include "misc/Position.hpp"
+#include "tiles/Tile.hpp"
 
 class Board {
 public:
   std::string name;
   int width, height;
-  std::unordered_map
+  std::unordered_map<Position, Tile> board;
 
   /**
    * Basic Board constructor determines the name and size.
@@ -21,7 +23,7 @@ public:
    * @param int         width
    * @param int         height
    */
-  Board(std::string n, int w, int h) : name(n), width(w), height(h) {}
+  Board(std::string n, int w, int h) : name(n), width(w), height(h), id_(constants::MISSING_BOARD) {}
 
   std::string id() { return id_; }
 
