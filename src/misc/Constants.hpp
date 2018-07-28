@@ -56,4 +56,10 @@ namespace constants {
 
   // critical multiplier
   const std::string ADD_CRIT_MULTI = "ADD_CRIT_MULTI";
+
+  // boards
+  const std::string MISSING_BOARD = "MISSING_BOARD";
+
+  // tiles
+  const std::string MISSING_TILE = "MISSING_TILE";
 }
