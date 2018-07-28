@@ -10,8 +10,8 @@ import subprocess
 
 # SAVE THIS FILE TO: .git/hooks/commit-msg
 
-MESSAGE_REGEX = '^#\d+\s\|\s'
-
+MESSAGE_REGEX1 = '^#\d+\s\|\s'
+MESSAGE_REGEX2 = '^(.*?)#\d+\s\|\s'
 
 def current_branch_name():
   """Gets the current GIT branch name.
@@ -31,7 +31,7 @@ def valid_commit_message(message):
   Returns:
     bool: True for valid messages, False otherwise.
   """
-  if not re.match(MESSAGE_REGEX, message):
+  if not re.match(MESSAGE_REGEX1, message) and not re.match(MESSAGE_REGEX2, message):
     name = current_branch_name()
     print "ERROR: Commit message does not comply with supreme overlord Kev's standards"
     print 'Example1: #420 | generic commit message'
