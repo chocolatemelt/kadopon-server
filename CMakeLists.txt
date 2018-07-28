@@ -28,6 +28,7 @@ include_directories(
 
   ${PROJECT_SOURCE_DIR}/ext
   ${PROJECT_SOURCE_DIR}/ext/entityx
+  ${PROJECT_SOURCE_DIR}/ext/spdlog
 )
 
 # sources
