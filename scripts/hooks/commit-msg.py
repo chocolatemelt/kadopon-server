@@ -10,7 +10,7 @@ import subprocess
 
 # SAVE THIS FILE TO: .git/hooks/commit-msg
 
-MESSAGE_REGEX = '^#\d+\s\|\s'
+MESSAGE_REGEX = '#\d+\s\|\s'
 
 
 def current_branch_name():
