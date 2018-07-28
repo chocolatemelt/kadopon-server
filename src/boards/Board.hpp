@@ -18,12 +18,12 @@ public:
   std::unordered_map<Position, Tile> board;
 
   /**
-   * Basic Board constructor determines the name and size.
-   * @param std::string name
-   * @param int         width
-   * @param int         height
+   * Basic Board constructor for internal testing; only uses generic MISSING_TILES.
+   * A layout string must be composed of 0s (no tile) and 1s (tile). The string length must be
+   * exactly the width * height.
+   * @param std::string layout
    */
-  Board(std::string n, int w, int h) : name(n), width(w), height(h), id_(constants::MISSING_BOARD) {}
+  Board(std::string, int, int);
 
   /**
    * Adds a tile to the board. If a tile exists at <x, y> position, replace that tile.
