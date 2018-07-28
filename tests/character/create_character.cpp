@@ -1,7 +1,6 @@
 /**
  * Tests character creation and relevant functions.
  */
-
 #include "catch.hpp"
 #include "components/attributes/Attributes.hpp"
 #include "components/modifiers/Modifiers.hpp"
