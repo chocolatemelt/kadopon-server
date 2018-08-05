@@ -9,6 +9,11 @@ struct Position {
 
   Position(int x, int y) : x(x), y(y) {}
 
+  Position north() { return Position(x, y + 1); }
+  Position south() { return Position(x, y - 1); }
+  Position east() { return Position(x + 1, y); }
+  Position west() { return Position(x - 1, y); }
+
   bool operator==(const Position &rhs) const {
     return (
       x == rhs.x
