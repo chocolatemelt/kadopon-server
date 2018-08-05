@@ -1,5 +1,5 @@
 /**
- * Tests boardgame creation and pathfinding algorithms.
+ * Tests basic boardgame creation and pathfinding algorithms.
  */
 #include <iostream>
 
