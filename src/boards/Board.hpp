@@ -40,6 +40,12 @@ public:
    */
   Tile* get(Position);
 
+  /**
+   * Returns this board's private ID.
+   * @return private id
+   */
+  std::string id() { return id_; }
+
   // common map functions to wrap around
   std::unordered_map<Position, Tile>::iterator find(const Position &p) {
     return board.find(p);
@@ -60,8 +66,6 @@ public:
   Tile& operator[](Position &&p) {
     return board[std::move(p)];
   }
-
-  std::string id() { return id_; }
 
 protected:
   std::string id_;
