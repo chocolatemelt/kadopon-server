@@ -22,4 +22,6 @@ public:
 
 private:
   BoardgameUtilities() {}
+
+  static void pathfinder_helper(Position, Position, Board, int, std::set<Position> &);
 };

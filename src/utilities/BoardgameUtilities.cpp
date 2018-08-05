@@ -1,6 +1,6 @@
 #include "utilities/BoardgameUtilities.hpp"
 
-static std::set<Position> BoardgameUtilities::pathfinder(Position start,
+std::set<Position> BoardgameUtilities::pathfinder(Position start,
                                                          Board board,
                                                          int mv,
                                                          std::set<Position> &ret) {
@@ -16,7 +16,7 @@ static std::set<Position> BoardgameUtilities::pathfinder(Position start,
   }
 }
 
-void pathfinder_helper(Position start, Position check, Board board, int mv, std::set<Position> &ret) {
+void BoardgameUtilities::pathfinder_helper(Position start, Position check, Board board, int mv, std::set<Position> &ret) {
   if(start != check) {
     if(board.find(check) != board.end()) {
       int cost = mv - board[check].mv;
