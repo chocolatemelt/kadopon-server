@@ -23,5 +23,5 @@ public:
 private:
   BoardgameUtilities() {}
 
-  static void pathfinder_helper(Position, Position, Board, int, std::unordered_set<Position> &);
+  static void std::unordered_set<Position> pathfinder_helper(Position, Position, Board, int, std::unordered_set<Position> &);
 };
