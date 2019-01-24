@@ -5,6 +5,10 @@
 
 #pragma once
 
+#ifndef SPDLOG_H
+#include "spdlog/spdlog.h"
+#endif
+
 #include "spdlog/details/fmt_helper.h"
 #include "spdlog/details/null_mutex.h"
 #include "spdlog/details/os.h"
@@ -27,11 +31,11 @@ namespace sinks {
  * Android sink (logging using __android_log_write)
  */
 template<typename Mutex>
-class android_sink SPDLOG_FINAL : public base_sink<Mutex>
+class android_sink final : public base_sink<Mutex>
 {
 public:
-    explicit android_sink(const std::string &tag = "spdlog", bool use_raw_msg = false)
-        : tag_(tag)
+    explicit android_sink(std::string tag = "spdlog", bool use_raw_msg = false)
+        : tag_(std::move(tag))
         , use_raw_msg_(use_raw_msg)
     {
     }
@@ -43,11 +47,11 @@ protected:
         fmt::memory_buffer formatted;
         if (use_raw_msg_)
         {
-            fmt_helper::append_buf(msg.raw, formatted);
+            details::fmt_helper::append_string_view(msg.payload, formatted);
         }
         else
         {
-            formatter_->format(msg, formatted);
+            sink::formatter_->format(msg, formatted);
         }
         formatted.push_back('\0');
         const char *msg_output = formatted.data();

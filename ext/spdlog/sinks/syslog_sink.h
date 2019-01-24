@@ -5,8 +5,11 @@
 
 #pragma once
 
-#include "spdlog/sinks/base_sink.h"
+#ifndef SPDLOG_H
 #include "spdlog/spdlog.h"
+#endif
+
+#include "spdlog/sinks/base_sink.h"
 
 #include <array>
 #include <string>
@@ -24,8 +27,8 @@ class syslog_sink : public base_sink<Mutex>
 {
 public:
     //
-    syslog_sink(const std::string &ident = "", int syslog_option = 0, int syslog_facility = LOG_USER)
-        : ident_(ident)
+    explicit syslog_sink(std::string ident = "", int syslog_option = 0, int syslog_facility = LOG_USER)
+        : ident_(std::move(ident))
     {
         priorities_[static_cast<size_t>(level::trace)] = LOG_DEBUG;
         priorities_[static_cast<size_t>(level::debug)] = LOG_DEBUG;
@@ -50,7 +53,7 @@ public:
 protected:
     void sink_it_(const details::log_msg &msg) override
     {
-        ::syslog(syslog_prio_from_level(msg), "%s", fmt::to_string(msg.raw).c_str());
+        ::syslog(syslog_prio_from_level(msg), "%s", fmt::to_string(msg.payload).c_str());
     }
 
     void flush_() override {}

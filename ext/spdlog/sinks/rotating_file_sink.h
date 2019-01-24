@@ -4,11 +4,15 @@
 //
 
 #pragma once
+
+#ifndef SPDLOG_H
+#include "spdlog/spdlog.h"
+#endif
+
 #include "spdlog/details/file_helper.h"
 #include "spdlog/details/null_mutex.h"
 #include "spdlog/fmt/fmt.h"
 #include "spdlog/sinks/base_sink.h"
-#include "spdlog/spdlog.h"
 
 #include <cerrno>
 #include <chrono>
@@ -24,16 +28,20 @@ namespace sinks {
 // Rotating file sink based on size
 //
 template<typename Mutex>
-class rotating_file_sink SPDLOG_FINAL : public base_sink<Mutex>
+class rotating_file_sink final : public base_sink<Mutex>
 {
 public:
-    rotating_file_sink(filename_t base_filename, std::size_t max_size, std::size_t max_files)
+    rotating_file_sink(filename_t base_filename, std::size_t max_size, std::size_t max_files, bool rotate_on_open=false)
         : base_filename_(std::move(base_filename))
         , max_size_(max_size)
         , max_files_(max_files)
     {
         file_helper_.open(calc_filename(base_filename_, 0));
         current_size_ = file_helper_.size(); // expensive. called only once
+        if (rotate_on_open && current_size_ > 0)
+        {
+            rotate_();
+        }
     }
 
     // calc filename according to index and file extension if exists.
@@ -44,7 +52,7 @@ public:
         if (index != 0u)
         {
             filename_t basename, ext;
-            std::tie(basename, ext) = details::file_helper::split_by_extenstion(filename);
+            std::tie(basename, ext) = details::file_helper::split_by_extension(filename);
             fmt::format_to(w, SPDLOG_FILENAME_T("{}.{}{}"), basename, index, ext);
         }
         else
@@ -52,6 +60,11 @@ public:
             fmt::format_to(w, SPDLOG_FILENAME_T("{}"), filename);
         }
         return fmt::to_string(w);
+    }
+
+    const filename_t &filename() const
+    {
+        return file_helper_.filename();
     }
 
 protected:
@@ -86,30 +99,37 @@ private:
         for (auto i = max_files_; i > 0; --i)
         {
             filename_t src = calc_filename(base_filename_, i - 1);
+            if (!details::file_helper::file_exists(src))
+            {
+                continue;
+            }
             filename_t target = calc_filename(base_filename_, i);
 
-            if (details::file_helper::file_exists(target))
+            if (!rename_file(src, target))
             {
-                if (details::os::remove(target) != 0)
-                {
-                    throw spdlog_ex("rotating_file_sink: failed removing " + filename_to_str(target), errno);
-                }
-            }
-            if (details::file_helper::file_exists(src) && details::os::rename(src, target) != 0)
-            {
-                // if failed try again after small delay.
+                // if failed try again after a small delay.
                 // this is a workaround to a windows issue, where very high rotation
-                // rates sometimes fail (because of antivirus?).
-                details::os::sleep_for_millis(20);
-                details::os::remove(target);
-                if (details::os::rename(src, target) != 0)
+                // rates can cause the rename to fail with permission denied (because of antivirus?).
+                details::os::sleep_for_millis(100);
+                if (!rename_file(src, target))
                 {
+                    file_helper_.reopen(true); // truncate the log file anyway to prevent it to grow beyond its limit!
+                    current_size_ = 0;
                     throw spdlog_ex(
                         "rotating_file_sink: failed renaming " + filename_to_str(src) + " to " + filename_to_str(target), errno);
                 }
             }
         }
         file_helper_.reopen(true);
+    }
+
+    // delete the target if exists, and rename the src file  to target
+    // return true on success, false otherwise.
+    bool rename_file(const filename_t &src_filename, const filename_t &target_filename)
+    {
+        // try to delete the target file in case it already exists.
+        (void)details::os::remove(target_filename);
+        return details::os::rename(src_filename, target_filename) == 0;
     }
 
     filename_t base_filename_;
@@ -130,15 +150,15 @@ using rotating_file_sink_st = rotating_file_sink<details::null_mutex>;
 
 template<typename Factory = default_factory>
 inline std::shared_ptr<logger> rotating_logger_mt(
-    const std::string &logger_name, const filename_t &filename, size_t max_file_size, size_t max_files)
+    const std::string &logger_name, const filename_t &filename, size_t max_file_size, size_t max_files, bool rotate_on_open=false)
 {
-    return Factory::template create<sinks::rotating_file_sink_mt>(logger_name, filename, max_file_size, max_files);
+    return Factory::template create<sinks::rotating_file_sink_mt>(logger_name, filename, max_file_size, max_files, rotate_on_open);
 }
 
 template<typename Factory = default_factory>
 inline std::shared_ptr<logger> rotating_logger_st(
-    const std::string &logger_name, const filename_t &filename, size_t max_file_size, size_t max_files)
+    const std::string &logger_name, const filename_t &filename, size_t max_file_size, size_t max_files, bool rotate_on_open = false)
 {
-    return Factory::template create<sinks::rotating_file_sink_st>(logger_name, filename, max_file_size, max_files);
+    return Factory::template create<sinks::rotating_file_sink_st>(logger_name, filename, max_file_size, max_files, rotate_on_open);
 }
 } // namespace spdlog
