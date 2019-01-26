@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/env python
 
 import sys
 import re
@@ -13,6 +13,20 @@ import subprocess
 MESSAGE_REGEX1 = '^#\d+\s\|\s'
 MESSAGE_REGEX2 = '^(.*?)#\d+\s\|\s'
 MESSAGE_REGEX3 = "Merge branch '.+' of https://github.com/chocolatemelt/kadopon-server"
+
+REGEX_MESSAGES = [MESSAGE_REGEX1,MESSAGE_REGEX2,MESSAGE_REGEX3]
+def valid_regex(comment):
+  """Function that validates regexes for a message.
+
+  Args:
+    comment (str): The message to validate against the regext.
+
+  Returns:
+    bool: True for a match, False otherwise.
+  """
+
+  return any(re.match(r_str, comment) for r_str in REGEX_MESSAGES)
+
 
 def current_branch_name():
   """Gets the current GIT branch name.
@@ -32,7 +46,7 @@ def valid_commit_message(message):
   Returns:
     bool: True for valid messages, False otherwise.
   """
-  if not re.match(MESSAGE_REGEX1, message) and not re.match(MESSAGE_REGEX2, message) and not re.match(MESSAGE_REGEX3, message):
+  if valid_regex(message):
     name = current_branch_name()
     print "ERROR: Commit message does not comply with supreme overlord Kev's standards"
     print 'Example1: #420 | generic commit message'
