@@ -5,6 +5,9 @@ project(kadopon-server)
 OPTION(BUILD_SERVER "Build kadopon server." ON)
 OPTION(BUILD_TESTS "Build kadopon tests." ON)
 
+# sanitize option
+OPTION(SANITIZE "Add sanitize debug flags." ON)
+
 # build flags
 if(NOT CMAKE_BUILD_TYPE)
   message(STATUS "No build type specified; falling back to DEBUG")
@@ -28,6 +31,7 @@ include_directories(
 
   ${PROJECT_SOURCE_DIR}/ext
   ${PROJECT_SOURCE_DIR}/ext/entityx
+  ${PROJECT_SOURCE_DIR}/ext/spdlog
 )
 
 # sources
@@ -60,7 +64,6 @@ set(COMMON_FLAGS
 )
 set(DEBUG_FLAGS
   -ggdb
-  -fsanitize=address,undefined
   --coverage
 )
 set(RELEASE_FLAGS
@@ -85,13 +88,16 @@ foreach(FLAG ${COMMON_FLAGS})
 endforeach()
 if(${DEBUG})
   foreach(FLAG ${DEBUG_FLAGS})
-  add_flag(${FLAG})
+    add_flag(${FLAG})
   endforeach()
 endif()
 if(${RELEASE})
   foreach(FLAG ${RELEASE_FLAGS})
-  add_flag(${FLAG})
+    add_flag(${FLAG})
   endforeach()
+endif()
+if(SANITIZE)
+  add_flag("-fsanitize=address,undefined")
 endif()
 
 IF(BUILD_SERVER)
