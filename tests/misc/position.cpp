@@ -9,7 +9,7 @@
 #include "catch.hpp"
 #include "misc/Position.hpp"
 
-TEST_CASE("Position fits into map", "[misc][position]") {
+TEST_CASE("position fits into map", "[misc][position]") {
   std::unordered_map<Position, int> collider;
   for(int x : boost::irange(0, 100)) {
     for(int y : boost::irange(0, 100)) {
@@ -23,13 +23,13 @@ TEST_CASE("Position fits into map", "[misc][position]") {
   }
 }
 
-TEST_CASE("Position equality", "[misc][position]") {
+TEST_CASE("position equality", "[misc][position]") {
   CHECK(Position(0, 0) == Position(0, 0));
   CHECK(Position(0, 0) != Position(1, 1));
   CHECK(Position(-1, -1) != Position(1, 1));
 }
 
-TEST_CASE("Position gets neighbors", "[misc][position]") {
+TEST_CASE("position gets neighbors", "[misc][position]") {
   Position base = Position(0,0);
   std::vector<Position> neighbors = base.get_neighbors();
   std::unordered_set<Position> check;
