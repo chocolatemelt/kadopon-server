@@ -55,5 +55,11 @@ namespace constants {
   const std::string ADD_CRIT_CHANCE = "ADD_CRIT_CHANCE";
 
   // critical multiplier
-  const std::string FLAT_CRIT_MULTI = "FLAT_CRIT_MULTI";
+  const std::string ADD_CRIT_MULTI = "ADD_CRIT_MULTI";
+
+  // boards
+  const std::string MISSING_BOARD = "MISSING_BOARD";
+
+  // tiles
+  const std::string MISSING_TILE = "MISSING_TILE";
 }

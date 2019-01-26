@@ -174,7 +174,7 @@ struct MultiplicativeLife : MultiplicativeModifier {
   /**
   * Critical multiplier modifiers
   */
-  struct FlatCritMulti : FlatModifier {
-    FlatCritMulti() : FlatModifier() { id_ = constants::FLAT_CRIT_MULTI; }
-    FlatCritMulti(int v) : FlatModifier(v) { id_ = constants::FLAT_CRIT_MULTI; }
+  struct AdditiveCritMulti : AdditiveModifier {
+    AdditiveCritMulti() : AdditiveModifier() { id_ = constants::ADD_CRIT_MULTI; }
+    AdditiveCritMulti(int v) : AdditiveModifier(v) { id_ = constants::ADD_CRIT_MULTI; }
   };
