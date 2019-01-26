@@ -5,7 +5,7 @@ using WsServer = SimpleWeb::SocketServer<SimpleWeb::WS>;
 int main() {
   WsServer server;
   server.config.port = 8080;
-  auto &poc = server.endpoint["poc"];
+  auto &poc = server.endpoint["^/poc/?$"];
 
   poc.on_message = [](std::shared_ptr<WsServer::Connection> connection, std::shared_ptr<WsServer::Message> message) {
     auto message_str = message->string();
@@ -38,4 +38,12 @@ int main() {
     std::cout << "Server: Error in connection " << connection.get() << ". "
          << "Error: " << ec << ", error message: " << ec.message() << std::endl;
   };
-};
+
+  std::thread server_thread([&server]() {
+    std::cout << "Started Server..." << std::endl;
+    // Start WS-server
+    server.start();
+  });
+
+  server_thread.join();
+}
