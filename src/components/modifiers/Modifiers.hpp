@@ -127,22 +127,12 @@ struct MultiplicativeLife : MultiplicativeModifier {
     FlatBlock(int v) : FlatModifier(v) { id_ = constants::FLAT_BLOCK; }
   };
 
-  struct AdditiveBlock : AdditiveModifier {
-    AdditiveBlock() : AdditiveModifier() { id_ = constants::ADD_BLOCK; }
-    AdditiveBlock(int v) : AdditiveModifier(v) { id_ = constants::ADD_BLOCK; }
-  };
-
   /**
   * Dodge modifiers
   */
   struct FlatDodge : FlatModifier {
     FlatDodge() : FlatModifier() { id_ = constants::FLAT_DODGE; }
     FlatDodge(int v) : FlatModifier(v) { id_ = constants::FLAT_DODGE; }
-  };
-
-  struct AdditiveDodge : AdditiveModifier {
-    AdditiveDodge() : AdditiveModifier() { id_ = constants::ADD_DODGE; }
-    AdditiveDodge(int v) : AdditiveModifier(v) { id_ = constants::ADD_DODGE; }
   };
 
   /**
@@ -166,15 +156,15 @@ struct MultiplicativeLife : MultiplicativeModifier {
   /**
   * Critical chance modifiers
   */
-  struct AdditiveCritChance : AdditiveModifier {
-    AdditiveCritChance() : AdditiveModifier() { id_ = constants::ADD_CRIT_CHANCE; }
-    AdditiveCritChance(int v) : AdditiveModifier(v) { id_ = constants::ADD_CRIT_CHANCE; }
+  struct FlatCritChance : FlatModifier {
+    FlatCritChance() : FlatModifier() { id_ = constants::FLAT_CRIT_CHANCE; }
+    FlatCritChance(int v) : FlatModifier(v) { id_ = constants::FLAT_CRIT_CHANCE; }
   };
 
   /**
   * Critical multiplier modifiers
   */
-  struct AdditiveCritMulti : AdditiveModifier {
-    AdditiveCritMulti() : AdditiveModifier() { id_ = constants::ADD_CRIT_MULTI; }
-    AdditiveCritMulti(int v) : AdditiveModifier(v) { id_ = constants::ADD_CRIT_MULTI; }
+  struct FlatCritMulti : FlatModifier {
+    FlatCritMulti() : FlatModifier() { id_ = constants::FLAT_CRIT_MULTI; }
+    FlatCritMulti(int v) : FlatModifier(v) { id_ = constants::FLAT_CRIT_MULTI; }
   };
