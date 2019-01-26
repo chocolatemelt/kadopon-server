@@ -3,6 +3,8 @@
  */
 #include <boost/range/irange.hpp>
 #include <unordered_map>
+#include <unordered_set>
+#include <vector>
 
 #include "catch.hpp"
 #include "misc/Position.hpp"
@@ -25,4 +27,18 @@ TEST_CASE("Position equality", "[misc][position]") {
   CHECK(Position(0, 0) == Position(0, 0));
   CHECK(Position(0, 0) != Position(1, 1));
   CHECK(Position(-1, -1) != Position(1, 1));
+}
+
+TEST_CASE("Position gets neighbors", "[misc][position]") {
+  Position base = Position(0,0);
+  std::vector<Position> neighbors = base.get_neighbors();
+  std::unordered_set<Position> check;
+  check.insert(base.north());
+  check.insert(base.south());
+  check.insert(base.east());
+  check.insert(base.west());
+
+  for(auto pos : neighbors) {
+    CHECK(check.find(pos) != check.end());
+  }
 }
