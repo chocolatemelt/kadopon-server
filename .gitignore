@@ -41,3 +41,4 @@ kadopon-server.kdev4
 
 # misc
 .DS_Store
+.vscode/

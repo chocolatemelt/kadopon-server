@@ -3,11 +3,27 @@
  */
 #pragma once
 
+#include <vector>
+
 struct Position {
   int x;
   int y;
 
   Position(int x, int y) : x(x), y(y) {}
+
+  Position north() { return Position(x, y + 1); }
+  Position south() { return Position(x, y - 1); }
+  Position east() { return Position(x + 1, y); }
+  Position west() { return Position(x - 1, y); }
+
+  std::vector<Position> get_neighbors() {
+    std::vector<Position> ret;
+    ret.push_back(north());
+    ret.push_back(south());
+    ret.push_back(east());
+    ret.push_back(west());
+    return ret;
+  }
 
   bool operator==(const Position &rhs) const {
     return (
