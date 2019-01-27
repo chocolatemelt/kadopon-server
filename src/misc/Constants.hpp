@@ -40,11 +40,9 @@ namespace constants {
 
   // block
   const std::string FLAT_BLOCK = "FLAT_BLOCK";
-  const std::string ADD_BLOCK = "ADD_BLOCK";
 
   // dodge
   const std::string FLAT_DODGE = "FLAT_DODGE";
-  const std::string ADD_DODGE = "ADD_DODGE";
 
   // elemental resistances
   const std::string FLAT_FIRE_RES = "FLAT_FIRE_RES";
@@ -52,8 +50,14 @@ namespace constants {
   const std::string FLAT_LIGHTNING_RES = "FLAT_LIGHTNING_RES";
 
   // critical chance
-  const std::string ADD_CRIT_CHANCE = "ADD_CRIT_CHANCE";
+  const std::string FLAT_CRIT_CHANCE = "FLAT_CRIT_CHANCE";
 
   // critical multiplier
-  const std::string ADD_CRIT_MULTI = "ADD_CRIT_MULTI";
+  const std::string FLAT_CRIT_MULTI = "FLAT_CRIT_MULTI";
+
+  // boards
+  const std::string MISSING_BOARD = "MISSING_BOARD";
+
+  // tiles
+  const std::string MISSING_TILE = "MISSING_TILE";
 }
