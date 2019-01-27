@@ -6,6 +6,7 @@
 
 #include <string>
 #include <unordered_map>
+#include <utility>
 
 #include "misc/Constants.hpp"
 #include "misc/Position.hpp"
@@ -37,9 +38,34 @@ public:
    * @param  Position position
    * @return          pointer to Tile at Position
    */
-  Tile *get(Position);
+  Tile* get(Position);
 
+  /**
+   * Returns this board's private ID.
+   * @return private id
+   */
   std::string id() { return id_; }
+
+  // common map functions to wrap around
+  std::unordered_map<Position, Tile>::iterator find(const Position &p) {
+    return board.find(p);
+  }
+
+  std::unordered_map<Position, Tile>::iterator begin() {
+    return board.begin();
+  }
+
+  std::unordered_map<Position, Tile>::iterator end() {
+    return board.end();
+  }
+
+  Tile& operator[](const Position &p) {
+    return board[p];
+  }
+
+  Tile& operator[](Position &&p) {
+    return board[std::move(p)];
+  }
 
 protected:
   std::string id_;

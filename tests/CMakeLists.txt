@@ -2,7 +2,7 @@
 set(TEST_SOURCES
   main.cpp
 
-  boardgame/boardgame_creation.cpp
+  boardgame/boardgame.cpp
   character/create_character.cpp
   instance/instance_creation.cpp
   misc/position.cpp
