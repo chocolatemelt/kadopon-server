@@ -4,9 +4,9 @@
 
 Board::Board(std::string layout, int w, int h) : name("Generic"), width(w), height(h), id_(constants::MISSING_BOARD) {
   // starting from the bottom left to the top right corner
-  for(int y : boost::irange(0, h)) {
-    for(int x : boost::irange(0, w)) {
-      if(layout[x + y * w] == '1') board[Position(x, y)] = Tile();
+  for(int x : boost::irange(0, w)) {
+    for(int y : boost::irange(0, h)) {
+      if(layout[x * w + y] == '1') board[Position(x, y)] = Tile();
     }
   }
 }
