@@ -43,7 +43,7 @@ set(KADOPON_SOURCES
   ${PROJECT_SOURCE_DIR}/src/systems/ScalingModifierSystem.cpp
   ${PROJECT_SOURCE_DIR}/src/utilities/ItemUtilities.cpp
   ${PROJECT_SOURCE_DIR}/src/utilities/RandomUtilities.cpp
-)
+  ${PROJECT_SOURCE_DIR}/src/combat/CombatInstance.cpp
 
 # external libraries
 add_subdirectory(ext/entityx)
