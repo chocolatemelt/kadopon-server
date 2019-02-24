@@ -15,7 +15,7 @@ public:
   /**
    * Generic Tile constructor.
    */
-  Tile() : mv(1), id_(constants::MISSING_TILE) {}
+  Tile() : mv(1), id_(Constants::MISSING_TILE) {}
 
   std::string id() { return id_; }
 
