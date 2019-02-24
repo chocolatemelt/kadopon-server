@@ -16,6 +16,7 @@ namespace Character {
   Entity createCharacter(Registry &reg) {
     const Entity e = reg.create();
     reg.assign<Life>(e);
+    reg.assign<Mana>(e);
     return e;
   }
 }
