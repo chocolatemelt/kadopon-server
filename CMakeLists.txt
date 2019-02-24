@@ -34,6 +34,7 @@ include_directories(
 
 # sources
 set(KADOPON_SOURCES
+  ${PROJECT_SOURCE_DIR}/src/instance/GameInstance.cpp
 )
 
 # external libraries
