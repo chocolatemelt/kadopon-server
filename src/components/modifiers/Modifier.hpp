@@ -8,9 +8,7 @@
 
 #include <string>
 
-#include "entityx/entityx.h"
-
-struct Modifier : entityx::Component<Modifier> {
+struct Modifier {
   int value = 0;
   std::unordered_map<int, int> more;
   std::unordered_map<int, int> less;

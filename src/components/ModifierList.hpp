@@ -8,6 +8,6 @@
 
 #include "modifiers/Modifier.hpp"
 
-struct ModifierList : entityx::Component<ModifierList> {
+struct ModifierList {
   std::vector<Modifier *> list;
 };

@@ -5,9 +5,7 @@
  */
 #pragma once
 
-#include "entityx/entityx.h"
-
-struct Attribute : entityx::Component<Attribute> {
+struct Attribute {
   double current = 0;
   double maximum = 0;
 };
