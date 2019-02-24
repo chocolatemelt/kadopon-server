@@ -5,7 +5,7 @@
 
 #include <string>
 
-namespace constants {
+namespace Constants {
   // life
   const std::string FLAT_LIFE = "FLAT_LIFE";
   const std::string ADD_LIFE = "ADD_LIFE";
