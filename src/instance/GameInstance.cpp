@@ -1,29 +1,12 @@
-#include "components/attributes/Attributes.hpp"
-#include "components/modifiers/Modifiers.hpp"
-#include "entityx/deps/Dependencies.h"
+#include "character/CharacterFactory.hpp"
 #include "instance/GameInstance.hpp"
-#include "systems/ScalingModifierSystem.hpp"
 
-GameInstance::GameInstance() : events(), entities(events), systems(entities, events) {
-  // set up component dependencies
-  systems.add<entityx::deps::Dependency<Life, FlatLife, AdditiveLife, MultiplicativeLife> >();
-  systems.add<entityx::deps::Dependency<Mana, FlatMana, AdditiveMana, MultiplicativeMana> >();
+Kadopon::GameInstance::GameInstance() {
+  // initialize the global registry (within game instance scope)
+  Kadopon::Registry registry;
 
-  // set up systems
-  systems.add<ScalingModifierSystem>();
+  // create a player
+  const Kadopon::Entity player = Character::createCharacter(registry);
 
-  // configure
-  systems.configure();
-}
-
-entityx::Entity GameInstance::create() {
-  return entities.create();
-}
-
-void GameInstance::update_modifiers() {
-  systems.update<ScalingModifierSystem>(0.0);
-}
-
-void GameInstance::update_modifiers(double dt) {
-  systems.update<ScalingModifierSystem>(dt);
+  // presumably, things happen here
 }

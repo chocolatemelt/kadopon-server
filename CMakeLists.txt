@@ -28,26 +28,18 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 # header include directories
 include_directories(
   ${PROJECT_SOURCE_DIR}/src
-
   ${PROJECT_SOURCE_DIR}/ext
-  ${PROJECT_SOURCE_DIR}/ext/entityx
   ${PROJECT_SOURCE_DIR}/ext/spdlog
 )
 
 # sources
 set(KADOPON_SOURCES
-  ${PROJECT_SOURCE_DIR}/src/boards/Board.cpp
-  ${PROJECT_SOURCE_DIR}/src/entities/Character.cpp
-  ${PROJECT_SOURCE_DIR}/src/entities/Item.cpp
+  ${PROJECT_SOURCE_DIR}/src/character/CharacterFactory.cpp
   ${PROJECT_SOURCE_DIR}/src/instance/GameInstance.cpp
-  ${PROJECT_SOURCE_DIR}/src/systems/ScalingModifierSystem.cpp
-  ${PROJECT_SOURCE_DIR}/src/utilities/BoardgameUtilities.cpp
-  ${PROJECT_SOURCE_DIR}/src/utilities/ItemUtilities.cpp
-  ${PROJECT_SOURCE_DIR}/src/utilities/RandomUtilities.cpp
+  ${PROJECT_SOURCE_DIR}/src/utilities/Random.cpp
 )
 
 # external libraries
-add_subdirectory(ext/entityx)
 add_subdirectory(ext/ws)
 add_subdirectory(ext/fmt)
 
@@ -104,7 +96,6 @@ IF(BUILD_SERVER)
   # server entrypoint
   add_executable(kadopon src/main.cpp ${KADOPON_SOURCES})
   target_link_libraries(kadopon simple-websocket-server)
-  target_link_libraries(kadopon entityx)
   target_link_libraries(kadopon fmt-header-only)
 
   # boost
