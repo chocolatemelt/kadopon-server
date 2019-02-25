@@ -5,6 +5,8 @@
 #include "character/CharacterFactory.hpp"
 #include "misc/Types.hpp"
 
+using namespace Attributes;
+
 TEST_CASE("creates a character properly", "[esc][character]") {
   Registry registry;
   Entity e = Character::createCharacter(registry);
