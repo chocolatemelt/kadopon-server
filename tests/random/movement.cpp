@@ -9,12 +9,12 @@
 #include <vector>
 
 #include "catch.hpp"
-#include "utilities/RandomUtilities.hpp"
+#include "utilities/Random.hpp"
 
 TEST_CASE("Die distribution hits 0-6", "[random]") {
   std::map<int, int> rolls;
 
-  for(auto x : RandomUtilities::roll_movement(10000)) {
+  for(auto x : Random::roll_movement(10000)) {
     ++rolls[x];
   }
 
