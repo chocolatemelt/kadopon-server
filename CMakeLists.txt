@@ -34,7 +34,9 @@ include_directories(
 
 # sources
 set(KADOPON_SOURCES
+  ${PROJECT_SOURCE_DIR}/src/character/CharacterFactory.cpp
   ${PROJECT_SOURCE_DIR}/src/instance/GameInstance.cpp
+  ${PROJECT_SOURCE_DIR}/src/utilities/Random.cpp
 )
 
 # external libraries
