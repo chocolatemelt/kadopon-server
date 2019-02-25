@@ -5,5 +5,7 @@
 
 #include <entt/entity/registry.hpp>
 
-using Registry = entt::DefaultRegistry;
-using Entity = Registry::entity_type;
+namespace Kadopon {
+  using Registry = entt::DefaultRegistry;
+  using Entity = Registry::entity_type;
+}

@@ -6,6 +6,7 @@
 #include "misc/Types.hpp"
 
 using namespace Attributes;
+using namespace Kadopon;
 
 TEST_CASE("creates a character properly", "[esc][character]") {
   Registry registry;

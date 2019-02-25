@@ -13,5 +13,5 @@ namespace Character {
    * @param  reg entity registry
    * @return     newly created entity
    */
-  Entity createCharacter(Registry &reg);
+  Kadopon::Entity createCharacter(Kadopon::Registry &reg);
 }
