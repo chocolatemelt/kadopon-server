@@ -11,6 +11,8 @@
 #include "catch.hpp"
 #include "utilities/Random.hpp"
 
+using namespace Kadopon;
+
 TEST_CASE("Die distribution hits 0-6", "[random]") {
   std::map<int, int> rolls;
 

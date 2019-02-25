@@ -2,6 +2,8 @@
 
 #include "utilities/Random.hpp"
 
+using namespace Kadopon;
+
 std::vector<int> Random::roll_movement(int n) {
   std::random_device rd;
   std::mt19937 gen(rd());

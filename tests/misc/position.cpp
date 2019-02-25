@@ -9,6 +9,8 @@
 #include "catch.hpp"
 #include "misc/Position.hpp"
 
+using namespace Kadopon;
+
 TEST_CASE("position fits into map", "[misc][position]") {
   std::unordered_map<Position, int> collider;
   for(int x : boost::irange(0, 100)) {

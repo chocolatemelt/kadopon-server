@@ -5,6 +5,8 @@
 
 #include <vector>
 
-namespace Random {
-  std::vector<int> roll_movement(int n);
-};
+namespace Kadopon {
+  namespace Random {
+    std::vector<int> roll_movement(int n);
+  };
+}

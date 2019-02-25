@@ -1,7 +1,7 @@
 #include "character/CharacterFactory.hpp"
 #include "instance/GameInstance.hpp"
 
-GameInstance::GameInstance() {
+Kadopon::GameInstance::GameInstance() {
   // initialize the global registry (within game instance scope)
   Kadopon::Registry registry;
 

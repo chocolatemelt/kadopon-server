@@ -5,10 +5,12 @@
 
 #include "misc/Types.hpp"
 
-class GameInstance {
-public:
-  /**
-   * Creates an instance of Kadopon with default values.
-   */
-  GameInstance();
-};
+namespace Kadopon {
+  class GameInstance {
+  public:
+    /**
+     * Creates an instance of Kadopon with default values.
+     */
+    GameInstance();
+  };
+}
