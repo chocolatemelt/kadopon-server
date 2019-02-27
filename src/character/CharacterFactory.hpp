@@ -10,10 +10,10 @@
 namespace Kadopon {
   namespace Character {
     /**
-     * Creates a character entity.
+     * Creates a Player entity.
      * @param  reg entity registry
      * @return     newly created entity
      */
-    Kadopon::Entity createCharacter(Kadopon::Registry &reg);
+    Kadopon::Entity createPlayer(Kadopon::Registry &reg);
   }
 }
