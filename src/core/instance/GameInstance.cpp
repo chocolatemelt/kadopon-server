@@ -13,7 +13,4 @@ Kadopon::GameInstance::GameInstance() {
   // since we're still just testing, i'll just keep the game loop code here for now
   // obviously this is temporary and should be handled separately so as not to be tightly coupled
   spdlog::info("kadopon poc starting...");
-
-  // ... and fin
-  spdlog::info("kadopon poc closed");
 }
