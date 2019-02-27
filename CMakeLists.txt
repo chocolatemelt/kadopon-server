@@ -35,7 +35,11 @@ include_directories(
 # sources
 set(KADOPON_SOURCES
   ${PROJECT_SOURCE_DIR}/src/character/CharacterFactory.cpp
-  ${PROJECT_SOURCE_DIR}/src/instance/GameInstance.cpp
+
+  ${PROJECT_SOURCE_DIR}/src/core/api/NetworkAPI.cpp
+  ${PROJECT_SOURCE_DIR}/src/core/instance/GameInstance.cpp
+  ${PROJECT_SOURCE_DIR}/src/core/server/KadoponMain.cpp
+
   ${PROJECT_SOURCE_DIR}/src/utilities/Random.cpp
 )
 
