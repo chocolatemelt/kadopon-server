@@ -3,6 +3,7 @@
  */
 #pragma once
 
+#include <czmq.h>
 #include <memory>
 
 #include "core/api/KadoponAPI.hpp"
@@ -22,5 +23,8 @@ namespace Kadopon {
 
     WSEndpoint *poc; // PROOF OF CONCEPT ENDPOINT. wrap this later.
     std::unique_ptr<std::thread> server_thread;
+
+    zsock_t *server_push;
+    zsock_t *client_pull;
   };
 }

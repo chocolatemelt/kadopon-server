@@ -22,6 +22,16 @@ elseif(CMAKE_BUILD_TYPE MATCHES Release)
   set(RELEASE TRUE)
 endif()
 
+# identify operating system
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+  set(MACOSX TRUE)
+endif()
+
+# support for homebrew/macports
+if(MACOSX)
+  list(APPEND CMAKE_PREFIX_PATH /usr/local)
+endif()
+
 # ycm support
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
@@ -46,6 +56,8 @@ set(KADOPON_SOURCES
 # external libraries
 add_subdirectory(ext/ws)
 add_subdirectory(ext/fmt)
+
+find_library(CZMQ_LIBRARY czmq)
 
 # build executables in bin/
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
@@ -101,6 +113,7 @@ IF(BUILD_SERVER)
   add_executable(kadopon src/main.cpp ${KADOPON_SOURCES})
   target_link_libraries(kadopon simple-websocket-server)
   target_link_libraries(kadopon fmt-header-only)
+  target_link_libraries(kadopon ${CZMQ_LIBRARY})
 
   # boost
   find_package(Boost 1.54.0 COMPONENTS system thread filesystem REQUIRED)

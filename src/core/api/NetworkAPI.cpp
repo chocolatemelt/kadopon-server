@@ -8,18 +8,17 @@ NetworkAPI::NetworkAPI() {
   server = std::make_unique<WSServer>();
   server->config.port = 8080;
   poc = &server->endpoint["^/poc/?$"];
+  server_push = zsock_new_push("inproc://kadopon-network");
+  client_pull = zsock_new_pull("inproc://kadopon-client");
 
-  poc->on_message = [](std::shared_ptr<WSServer::Connection> connection, std::shared_ptr<WSServer::InMessage> in_message) {
+  poc->on_message = [this](std::shared_ptr<WSServer::Connection> connection, std::shared_ptr<WSServer::InMessage> in_message) {
     auto out_message = in_message->string();
-
-    spdlog::info("{}: {}", connection->remote_endpoint_address(), out_message);
-    spdlog::info("server: echoing");
-
-    // connection->send is an asynchronous function
+    spdlog::info("network: received {}", out_message);
+    spdlog::info("network: sending {}", out_message);
+    zstr_send(server_push, out_message.c_str());
     connection->send(out_message, [](const SimpleWeb::error_code &ec) {
       if(ec) {
-        // See http://www.boost.org/doc/libs/1_55_0/doc/html/boost_asio/reference.html, Error Codes for error code meanings
-        spdlog::error("server encountered an error: {}", ec.message());
+        spdlog::error("error sending message");
       }
     });
   };
@@ -41,12 +40,6 @@ NetworkAPI::NetworkAPI() {
       connection->remote_endpoint_address(),
       ec.message());
   };
-
-  server_thread = std::make_unique<std::thread>([this]() {
-    spdlog::info("kadopon server starting...");
-    server->start();
-    spdlog::info("kadopon server stopping");
-  });
 }
 
 NetworkAPI::~NetworkAPI() {
@@ -54,7 +47,16 @@ NetworkAPI::~NetworkAPI() {
 }
 
 void NetworkAPI::init() {
-  server_thread->join();
+  server_thread = std::make_unique<std::thread>([this]() {
+    spdlog::info("kadopon server starting...");
+    server->start();
+    spdlog::info("kadopon server stopping");
+  });
 }
 
-void NetworkAPI::deinit() {}
+void NetworkAPI::deinit() {
+  server->stop();
+  server_thread->detach();
+  zsock_destroy(&server_push);
+  zsock_destroy(&client_pull);
+}
