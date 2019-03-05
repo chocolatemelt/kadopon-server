@@ -1,3 +1,4 @@
+#include <atomic>
 #include <czmq.h>
 #include <csignal>
 #include <spdlog/spdlog.h>
@@ -8,28 +9,29 @@
 
 using namespace Kadopon;
 
-static int terminate = 0;
+// not sure where to put this in actual code, but this works as a proof-of-concept
+static std::atomic<bool> terminate { false };
 
 void sig_handler(int s) {
-  terminate = 1;
+  terminate = true;
   spdlog::info("caught signal {}, terminating", s);
 }
 
 int KadoponMain::runner() {
-  // single-threaded for now, but we'll see how we can eventually manage multiple instances
   NetworkAPI network;
   network.init();
+
+  // this really should start in a separate instance, not the runner class
   zsock_t *pull = zsock_new_pull("inproc://kadopon-network");
   auto main_thread = std::make_unique<std::thread>([pull]() {
-    while(true) {
+    while(!terminate) {
       char *str = zstr_recv(pull);
       spdlog::info("received message: {}", str);
       zstr_free(&str);
     }
   });
-  main_thread->detach();
 
-  // im not a bad programmer i promise
+  // this runs some custom code (i.e. terminate) upon receiving SIGINT
   struct sigaction sigIntHandler;
   sigIntHandler.sa_handler = sig_handler;
   sigemptyset(&sigIntHandler.sa_mask);
@@ -38,6 +40,7 @@ int KadoponMain::runner() {
   while(!terminate);
 
   // cleanup..?
+  network.deinit();
   zsock_destroy(&pull);
   return 0;
 }
