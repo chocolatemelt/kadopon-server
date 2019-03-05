@@ -101,6 +101,7 @@ IF(BUILD_SERVER)
   add_executable(kadopon src/main.cpp ${KADOPON_SOURCES})
   target_link_libraries(kadopon simple-websocket-server)
   target_link_libraries(kadopon fmt-header-only)
+  target_link_libraries(kadopon czmq)
 
   # boost
   find_package(Boost 1.54.0 COMPONENTS system thread filesystem REQUIRED)
