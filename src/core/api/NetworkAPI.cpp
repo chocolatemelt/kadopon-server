@@ -8,11 +8,15 @@ NetworkAPI::NetworkAPI() {
   server = std::make_unique<WSServer>();
   server->config.port = 8080;
   poc = &server->endpoint["^/poc/?$"];
+  // server_push = zsock_new_push("inproc://kadopon-network");
+  // client_pull = zsock_new_pull("inproc://kadopon-client");
 
-  poc->on_message = [](std::shared_ptr<WSServer::Connection> connection, std::shared_ptr<WSServer::InMessage> in_message) {
+  poc->on_message = [this](std::shared_ptr<WSServer::Connection> connection, std::shared_ptr<WSServer::InMessage> in_message) {
     auto out_message = in_message->string();
     if(out_message == "echo") {
-      spdlog::info("received echo");
+      spdlog::info("network: received echo");
+      spdlog::info("network: pushing echo");
+      zstr_send(server_push, out_message.c_str());
     }
 
     // spdlog::info("{}: {}", connection->remote_endpoint_address(), out_message);
@@ -44,12 +48,6 @@ NetworkAPI::NetworkAPI() {
       connection->remote_endpoint_address(),
       ec.message());
   };
-
-  server_thread = std::make_unique<std::thread>([this]() {
-    spdlog::info("kadopon server starting...");
-    server->start();
-    spdlog::info("kadopon server stopping");
-  });
 }
 
 NetworkAPI::~NetworkAPI() {
@@ -57,7 +55,12 @@ NetworkAPI::~NetworkAPI() {
 }
 
 void NetworkAPI::init() {
-  server_thread->join();
+  server_thread = std::make_unique<std::thread>([this]() {
+    spdlog::info("kadopon server starting...");
+    server->start();
+    spdlog::info("kadopon server stopping");
+  });
+  server_thread->detach();
 }
 
 void NetworkAPI::deinit() {}
