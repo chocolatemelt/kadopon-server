@@ -13,22 +13,14 @@ NetworkAPI::NetworkAPI() {
 
   poc->on_message = [this](std::shared_ptr<WSServer::Connection> connection, std::shared_ptr<WSServer::InMessage> in_message) {
     auto out_message = in_message->string();
-    if(out_message == "echo") {
-      spdlog::info("network: received echo");
-      spdlog::info("network: pushing echo");
-      zstr_send(server_push, out_message.c_str());
-    }
-
-    // spdlog::info("{}: {}", connection->remote_endpoint_address(), out_message);
-    // spdlog::info("server: echoing");
-    //
-    // // connection->send is an asynchronous function
-    // connection->send(out_message, [](const SimpleWeb::error_code &ec) {
-    //   if(ec) {
-    //     // See http://www.boost.org/doc/libs/1_55_0/doc/html/boost_asio/reference.html, Error Codes for error code meanings
-    //     spdlog::error("server encountered an error: {}", ec.message());
-    //   }
-    // });
+    spdlog::info("network: received {}", out_message);
+    spdlog::info("network: sending {}", out_message);
+    zstr_send(server_push, out_message.c_str());
+    connection->send(out_message, [](const SimpleWeb::error_code &ec) {
+      if(ec) {
+        spdlog::error("error sending message");
+      }
+    });
   };
 
   poc->on_open = [](std::shared_ptr<WSServer::Connection> connection) {
