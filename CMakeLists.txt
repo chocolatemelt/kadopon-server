@@ -39,7 +39,6 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 include_directories(
   ${PROJECT_SOURCE_DIR}/src
   ${PROJECT_SOURCE_DIR}/ext
-  ${PROJECT_SOURCE_DIR}/ext/spdlog
 )
 
 # sources
@@ -58,6 +57,9 @@ add_subdirectory(ext/ws)
 add_subdirectory(ext/fmt)
 
 find_library(CZMQ_LIBRARY czmq)
+find_package(Lua 5.1 REQUIRED)
+
+include_directories(/usr/local/include ${LUA_INCLUDE_DIR})
 
 # build executables in bin/
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
@@ -114,6 +116,7 @@ IF(BUILD_SERVER)
   target_link_libraries(kadopon simple-websocket-server)
   target_link_libraries(kadopon fmt-header-only)
   target_link_libraries(kadopon ${CZMQ_LIBRARY})
+  target_link_libraries(kadopon ${LUA_LIBRARIES})
 
   # boost
   find_package(Boost 1.54.0 COMPONENTS system thread filesystem REQUIRED)
