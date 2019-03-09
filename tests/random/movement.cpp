@@ -25,19 +25,19 @@ TEST_CASE("Die distribution hits 0-6", "[random]") {
     std::cout << r.first << ' ' << std::string(r.second/100, '*') << std::endl;
   }
 
-  // distributions are within 1% of expected result
-  CHECK(rolls.find(0)->second > 400);
-  CHECK(rolls.find(0)->second < 600);
-  CHECK(rolls.find(1)->second > 400);
-  CHECK(rolls.find(1)->second < 600);
-  CHECK(rolls.find(2)->second > 900);
-  CHECK(rolls.find(2)->second < 1100);
-  CHECK(rolls.find(3)->second > 2400);
-  CHECK(rolls.find(3)->second < 2600);
-  CHECK(rolls.find(4)->second > 2400);
-  CHECK(rolls.find(4)->second < 2600);
-  CHECK(rolls.find(5)->second > 1900);
-  CHECK(rolls.find(5)->second < 2100);
-  CHECK(rolls.find(6)->second > 900);
-  CHECK(rolls.find(6)->second < 1100);
+  // distributions are within 1.5% of expected result
+  CHECK(rolls.find(0)->second > 350);
+  CHECK(rolls.find(0)->second < 650);
+  CHECK(rolls.find(1)->second > 350);
+  CHECK(rolls.find(1)->second < 650);
+  CHECK(rolls.find(2)->second > 850);
+  CHECK(rolls.find(2)->second < 1150);
+  CHECK(rolls.find(3)->second > 2350);
+  CHECK(rolls.find(3)->second < 2650);
+  CHECK(rolls.find(4)->second > 2350);
+  CHECK(rolls.find(4)->second < 2650);
+  CHECK(rolls.find(5)->second > 1850);
+  CHECK(rolls.find(5)->second < 2150);
+  CHECK(rolls.find(6)->second > 850);
+  CHECK(rolls.find(6)->second < 1150);
 }
