@@ -4,6 +4,7 @@ set(TEST_SOURCES
 
   boardgame/boardgame_creation.cpp
   character/create_character.cpp
+  combat/damage_instance.cpp
   instance/instance_creation.cpp
   misc/position.cpp
   modifiers/increased_vs_more.cpp
