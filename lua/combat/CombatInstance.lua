@@ -1,7 +1,5 @@
 -- import damage instance and characters
 
--- player health values are not updating atm, need to fix
-
 -- define local variables
 local vars = {
   p1hp = 100, -- player health
