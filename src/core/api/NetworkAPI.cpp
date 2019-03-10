@@ -55,8 +55,8 @@ void NetworkAPI::init() {
 }
 
 void NetworkAPI::deinit() {
-  server->stop();
-  server_thread->detach();
   zsock_destroy(&server_push);
   zsock_destroy(&client_pull);
+  server->stop();
+  server_thread->detach();
 }
