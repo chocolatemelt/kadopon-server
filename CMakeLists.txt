@@ -119,7 +119,7 @@ IF(BUILD_SERVER)
   target_link_libraries(kadopon ${LUA_LIBRARIES})
 
   # boost
-  find_package(Boost 1.54.0 COMPONENTS system thread filesystem REQUIRED)
+  find_package(Boost 1.71.0 COMPONENTS system thread filesystem REQUIRED)
   target_link_libraries(kadopon ${Boost_LIBRARIES})
   target_include_directories(kadopon PRIVATE ${Boost_INCLUDE_DIR})
 
